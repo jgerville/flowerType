@@ -47,13 +47,13 @@ This project will be implemented with the following technologies:
 
 # Implementation Timeline
 
-**Friday Afternoon & Weekend:** Setup the project's file structure and setup dependencies like Webpack.  Create `Text` class and add fundamental logic like key event listeners.
+**Friday Afternoon & Weekend:** Setup the project's file structure and setup dependencies like Webpack.  Create `Text` and `TextView` classes and add fundamental logic like key event listeners.
 
 **Monday:** Implement the bulk of the app logic. Make letters that have been successfully typed greyed out. Make text turn red if the user has missed a key and kept typing past it. Make the text scroll when the user needs to see more of it.
 
-**Tuesday:** If the `Text` logic is complete, work on the `Keyboard` class and associated logic. Implement a visual representation of a keyboard on the page, and make keys dynamically light up when pressed using event listeners.
+**Tuesday:** If the `Text` and `TextView` logic is complete, work on the `Keyboard` and `KeyboardView` classes and associated logic. Implement a visual representation of a keyboard on the page, and make keys dynamically light up when pressed using event listeners.
 
-**Wednesday:** Add a button to hide the Keyboard element and simultaneously enlarge the Text panel. If `Keyboard` is set up, create a `Start` page with a start button and an instructions panel and make everything else appear only after the user clicks on a button. 
+**Wednesday:** Add a button to hide the Keyboard element and simultaneously enlarge the Text panel. If `Keyboard` and `KeyboardView` are set up, create a `Start` page with a start button and an instructions panel and make everything else appear only after the user clicks on a button. Create a `View` class to handle showing and hiding the Start page, the Text, and the Keyboard elements.
 
 **Thursday Morning:** Deploy to GitHub pages. If time, rewrite this proposal as a production README. If there is still more time, add different selections of texts for users to type out.
 
