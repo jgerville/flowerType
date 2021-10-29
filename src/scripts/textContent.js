@@ -22,6 +22,10 @@ class TextContent {
     }
   }
 
+  isMatch(key) {
+    return key == this.currentChar;
+  }
+
   // invoke whenever the idx changes
   updateCurrentChar() {
     this.currentChar = this.body[this.idx];
@@ -29,7 +33,7 @@ class TextContent {
 
   // if the idx reaches the length, the user has gotten to the end of the text
   isFinished() {
-    this.idx === this.length
+    return this.idx === this.length
   }
 }
 
