@@ -11,6 +11,8 @@ class TextContent {
     if (!this.isFinished()) {
       this.idx ++;
       this.updateCurrentChar();
+    } else {
+      console.log("Can't go forward cause finished.")
     }
   }
 
@@ -19,6 +21,8 @@ class TextContent {
     if (this.idx > 0) {
       this.idx --;
       this.updateCurrentChar();
+    } else {
+      console.log("Can't backspace; already at idx 0.")
     }
   }
 
