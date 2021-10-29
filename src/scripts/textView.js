@@ -7,7 +7,6 @@ class TextView {
     this.IGNOREDKEYS = ["Tab", "Backspace", "Delete", "Shift", "Escape", "Alt", "CapsLock", "Control", "Fn", "FnLock", "Meta", "NumLock", "ScrollLock", "ArrowDown", "ArrowUp", "ArrowLeft", "ArrowRight", "End", "Home", "PageDown", "PageUp"]
     this.textContent = new TextContent(this.SHORTCATIPSUM);
     this.numWrongKeydowns = 0;
-    this.numWordsTyped = 0;
     this.renderText();
     // this.displayedIdx = 0;
     this.addBindings();
@@ -37,19 +36,18 @@ class TextView {
   }
 
   addBindings() {
-    document.addEventListener('keydown', this.typingListener.bind(this));
+    document.addEventListener('keydown', this._typingListener.bind(this));
   }
 
   // currently not being called anywhere
   removeBindings() {
-    document.removeEventListener('keydown', this.typingListener.bind(this));
+    document.removeEventListener('keydown', this._typingListener.bind(this));
   }
 
-  typingListener(e) {
+  _typingListener(e) {
     const key = e.key;
     console.log(key);
     if (this._ismatch(key)) {
-      if (this._isSpace(key)) this._incrementWordsTyped();
       this.correctChar();
     } else if (this._isIgnoredKey(key)) {
       console.log(`${key} will not be counted as incorrect because it's on the ignore list.`)
@@ -59,13 +57,25 @@ class TextView {
   }
 
   correctChar() {
+    const correctEle = this._getCurrentElement();
+    correctEle.classList.remove('wrong-char')
+    correctEle.classList.add('correct-char');
+
     this.textContent.nextChar();
     console.log(`matched! next up is ${this.textContent.currentChar}`)
   }
 
   wrongChar() {
+    const wrongEle = this._getCurrentElement();
+    wrongEle.classList.add('wrong-char')
     this.numWrongKeydowns ++;
     console.log(`Wrong entry. the next char is: ${this.textContent.currentChar}`)
+  }
+
+  _getCurrentElement() {
+    const charIdx = this.textContent.idx;
+    const currentEle = document.querySelector(`[data-char='${charIdx}']`);
+    return currentEle;
   }
 
   _incrementWordsTyped() {
@@ -83,6 +93,8 @@ class TextView {
   _isIgnoredKey(key) {
     return this.IGNOREDKEYS.indexOf(key) >= 0;
   }
+
+
 }
 
 module.exports = TextView;

@@ -1,0 +1,22 @@
+@use 'variables' as v;
+
+p {
+  font-size: 30px;
+}
+
+p {
+  span {
+    transition: color 0.2s ease-out;
+  }
+}
+
+.correct-char {
+  color: v.$right;
+}
+
+.wrong-char {
+  // transition: color 0.2s ease-in;
+  transition: background-color 0.2s ease-out;
+  // color: v.$wrong;
+  background-color: v.$wrong;
+}
