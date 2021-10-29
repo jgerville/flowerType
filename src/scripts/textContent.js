@@ -1,4 +1,4 @@
-class Text {
+class TextContent {
   constructor(body) {
     this.body = body;
     this.length = this.body.length;
@@ -32,3 +32,5 @@ class Text {
     this.idx === this.length
   }
 }
+
+module.exports = TextContent;
