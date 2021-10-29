@@ -15,9 +15,25 @@ class TextView {
 
   renderText() {
     const container = document.querySelector('.text-container');
-    const p = document.createElement('p');
-    p.innerText = this.textContent.body;
+    const p = this._spanifyText(this.textContent.body);
     container.appendChild(p);
+  }
+
+  // params: takes in a string of text
+  // returns: an HTML p element of spans, where each span contains 1 character
+  //          and each span has two data attributes: char and word
+  _spanifyText(str) {
+    const p = document.createElement('p');
+    let wordIdx = 1;
+    for (let i = 0; i < str.length; i++) {
+      const span = document.createElement('span');
+      span.dataset.char = i;
+      span.dataset.word = wordIdx;
+      span.append(str[i]);
+      p.appendChild(span);
+      if (str[i] === " ") wordIdx++;
+    }
+    return p;
   }
 
   addBindings() {
@@ -44,31 +60,13 @@ class TextView {
 
   correctChar() {
     this.textContent.nextChar();
-    // this.nextDisplayedIdx();
     console.log(`matched! next up is ${this.textContent.currentChar}`)
   }
 
   wrongChar() {
-    // this.nextDisplayedIdx();
     this.numWrongKeydowns ++;
     console.log(`Wrong entry. the next char is: ${this.textContent.currentChar}`)
   }
-
-  // nextDisplayedIdx() {
-
-  // }
-
-  // prevDisplayedIdx() {
-
-  // }
-
-  // backspace() {
-
-  // }
-
-  // _isBackspace(key) {
-  //   return key === "Backspace";
-  // }
 
   _incrementWordsTyped() {
     this.numWordsTyped ++;
