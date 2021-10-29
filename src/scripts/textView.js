@@ -7,6 +7,7 @@ class TextView {
     this.IGNOREDKEYS = ["Tab", "Delete", "Shift", "Escape", "Alt", "CapsLock", "Control", "Fn", "FnLock", "Meta", "NumLock", "ScrollLock"]
     this.textContent = new TextContent(this.CATIPSUM);
     this.renderText();
+    this.displayedIdx = 0;
     this.addBindings();
   }
 
@@ -21,17 +22,47 @@ class TextView {
     document.addEventListener('keydown', (e) => {
       const key = e.key;
       console.log(key);
-      if (key === "Backspace") {
+      if (this._isBackspace(key)) {
         this.textContent.prevChar();
-      } else if (this.textContent.isMatch(key)) {
-        this.textContent.nextChar();
-        console.log(`matched! next up is ${this.textContent.currentChar}`)
-      } else if (this.IGNOREDKEYS.indexOf(key) >= 0) {
-        console.log("Looks like an ignored key was pressed.")        
+      } else if (this._ismatch(key)) {
+        this.correctChar();
+      } else if (this._isIgnoredKey(key)) {
+        console.log("Looks like an ignored key was pressed.")
       } else {
-        console.log(`Wrong entry. the next char is: ${this.textContent.currentChar}`)
+        this.wrongChar();
       }
     })
+  }
+
+  correctChar() {
+    this.textContent.nextChar();
+    this.nextDisplayedIdx();
+    console.log(`matched! next up is ${this.textContent.currentChar}`)
+  }
+
+  wrongChar() {
+    this.nextDisplayedIdx();
+    console.log(`Wrong entry. the next char is: ${this.textContent.currentChar}`)
+  }
+
+  nextDisplayedIdx() {
+
+  }
+
+  prevDisplayedIdx() {
+
+  }
+
+  _isBackspace(key) {
+    return key === "Backspace";
+  }
+
+  _ismatch(key) {
+    return this.textContent.isMatch(key);
+  }
+  
+  _isIgnoredKey(key) {
+    return this.IGNOREDKEYS.indexOf(key) >= 0;
   }
 }
 
