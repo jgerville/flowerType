@@ -1,13 +1,19 @@
 @use 'variables' as v;
 
 p {
-  font-size: 30px;
+  margin-top: 0.5em;
+  font-size: 2rem;
 }
 
 p {
   span {
     transition: color 0.2s ease-out;
+    transition: background-color 0.2s ease-out;
   }
+}
+
+.current-char {
+  background-color: v.$right;
 }
 
 .correct-char {
@@ -16,7 +22,14 @@ p {
 
 .wrong-char {
   // transition: color 0.2s ease-in;
-  transition: background-color 0.2s ease-out;
   // color: v.$wrong;
   background-color: v.$wrong;
+}
+
+.still-wrong-char {
+  background-color: v.$still-wrong;
+}
+
+.very-wrong-char {
+  background-color: v.$very-wrong;
 }

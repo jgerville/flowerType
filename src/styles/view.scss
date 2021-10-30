@@ -1,6 +1,38 @@
 @use 'variables' as v;
 
 body {
+  font-family: 'Open Sans', sans-serif;
+  line-height: 1.5;
   background-color: v.$off-white;
 }
 
+.page-container {
+  margin: 10em 3em 0 3em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.top-half {
+  border: 1px solid v.$green;
+  text-align: center;
+}
+
+// change max-height by 3 rem for one line of text
+.text-container {
+  overflow: hidden;
+  max-height: 18rem;
+  padding: 0 1em 1em 1em;
+}
+
+.timer {
+  display: inline-block;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 2rem;
+  padding: 0 0.2em 0.2em 0.2em;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+}
