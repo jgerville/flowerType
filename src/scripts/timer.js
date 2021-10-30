@@ -4,12 +4,20 @@ class Timer {
     this.secondsLeft = numSeconds;
     this.container = container;
     this.running = false;
+    this.over = false;
   }
 
   start() {
     this.running = true;
     this.render();
-    setInterval(this.decrementAndRender.bind(this, this.container), 1000)
+    const interval = setInterval(() => {
+      this.secondsLeft -= 1;
+      this.render();
+      if (this.secondsLeft === 0) {
+        clearInterval(interval);
+        this.over = true;
+      }
+    }, 1000);
   }
 
   render() {
@@ -33,11 +41,6 @@ class Timer {
     p.append(formattedTime);
     this.container.appendChild(p)
 
-  }
-
-  decrementAndRender() {
-    this.secondsLeft -= 1;
-    this.render();
   }
 
   _convertSecsToMins(timeArray) {

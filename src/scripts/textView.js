@@ -12,9 +12,11 @@ class TextView {
     this.timerContainer = document.querySelector('.timer-container');
     this.timer = new Timer(60, this.timerContainer);
 
+    this.boundTypingListener = this._typingListener.bind(this);
+
     this.renderText();
-    this.addBindings();
     this.timer.render();
+    this.addBindings();
   }
 
   renderText() {
@@ -42,25 +44,28 @@ class TextView {
   }
 
   addBindings() {
-    document.addEventListener('keydown', this._typingListener.bind(this));
+    document.addEventListener('keydown', this.boundTypingListener);
   }
 
   // currently not being called anywhere
   removeBindings() {
-    document.removeEventListener('keydown', this._typingListener.bind(this));
+    document.removeEventListener('keydown', this.boundTypingListener);
   }
 
   _typingListener(e) {
     const key = e.key;
-    console.log(key);
 
-    if (this._ismatch(key)) {
-      this.startTimer();
-      this.correctChar();
-    } else if (this._isIgnoredKey(key)) {
-      console.log(`${key} will not be counted as incorrect because it's on the ignore list.`)
+    if (this.timer.over) {
+      this.removeBindings();
     } else {
-      this.wrongChar();
+      if (this._ismatch(key)) {
+        this.startTimer();
+        this.correctChar();
+      } else if (this._isIgnoredKey(key)) {
+        console.log(`${key} will not be counted as incorrect because it's on the ignore list.`)
+      } else {
+        this.wrongChar();
+      }
     }
   }
 
