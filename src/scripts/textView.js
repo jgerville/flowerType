@@ -8,10 +8,11 @@ class TextView {
     this.SHORTCATIPSUM = `Cat ipsum dolor sit amet, put butt in owner's face`
     this.IGNOREDKEYS = ["Tab", "Backspace", "Delete", "Shift", "Escape", "Alt", "CapsLock", "Control", "Fn", "FnLock", "Meta", "NumLock", "ScrollLock", "ArrowDown", "ArrowUp", "ArrowLeft", "ArrowRight", "End", "Home", "PageDown", "PageUp"]
     this.textContent = new TextContent(this.CATIPSUM);
-    this.textStats = new TextStats()
-
+    
     this.timerContainer = document.querySelector('.timer-container');
     this.timer = new Timer(30, this.timerContainer);
+
+    this.textStats = new TextStats(this.timer.initialTime)
 
     this.boundTypingListener = this._typingListener.bind(this);
 
@@ -65,7 +66,7 @@ class TextView {
       } else if (this._isIgnoredKey(key)) {
         console.log(`${key} will not be counted as incorrect because it's on the ignore list.`)
       } else {
-        this.wrongChar();
+        this.wrongChar(key);
       }
     }
   }
@@ -75,9 +76,10 @@ class TextView {
     correctEle.classList.remove('current-char', 'wrong-char', 'still-wrong-char', 'very-wrong-char')
     correctEle.classList.add('correct-char');
 
+    this.textStats.setNumWordsTyped(correctEle);
     this.textContent.nextChar();
     this._colorCurrentElement();
-    console.log(`matched! next up is ${this.textContent.currentChar}`)
+    // console.log(`matched! next up is ${this.textContent.currentChar}`)
   }
 
   startTimer() {
@@ -86,10 +88,9 @@ class TextView {
     }
   }
 
-  wrongChar() {
+  wrongChar(key) {
     // first, update data in TextStats
-    this.textStats.incrementNumWrongKeydowns();
-    this.textStats.logWrongChar(this.textContent.currentChar,);
+    this.textStats.logWrongChar(this.textContent.currentChar, key);
 
     // add classes to update visuals
     const wrongEle = this._getCurrentElement();
@@ -112,11 +113,6 @@ class TextView {
     const charIdx = this.textContent.idx;
     const currentEle = document.querySelector(`[data-char='${charIdx}']`);
     return currentEle;
-  }
-
-  setNumWordsTyped() {
-    const currentEle = this._getCurrentElement();
-    this.textStats.numWordsTyped = currentEle.dataset.word;
   }
 
   _isSpace(key) {

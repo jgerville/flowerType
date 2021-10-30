@@ -1,8 +1,9 @@
 class TextStats {
-  constructor() {
+  constructor(allottedTime) {
     this.numWordsTyped = 0;
-    this.numWrongKeydowns = 0;
+    this.allottedTime = allottedTime;
 
+    this.numWrongKeydowns = 0;
     this.missedCharCounts = {};
 
     // keys: what user should have typed
@@ -10,11 +11,19 @@ class TextStats {
     this.rightCharWrongChar = {};
   }
 
+  render(container) {
+    const p = document.createElement('p')
+    p.append(`Typing speed: `)
+  }
+
   setNumWordsTyped(currentSpan) {
     this.numWordsTyped = currentSpan.dataset.word;
   }
 
   logWrongChar(missedKey, typedKey) {
+    // update numWrongKeydowns
+    this._incrementNumWrongKeydowns();
+
     // update the counts hash
     const upcaseKey = missedKey.toUpperCase();
     if (this.missedCharCounts[upcaseKey]) {
@@ -31,16 +40,14 @@ class TextStats {
         this.rightCharWrongChar[upcaseKey][typedKey] = 1
       }
     } else {
-      this.rightCharWrongChar[upcaseKey] = {typedKey: 1}
+      this.rightCharWrongChar[upcaseKey] = {};
+      this.rightCharWrongChar[upcaseKey][typedKey] = 1;
     }
   }
 
-  incrementNumWrongKeydowns() {
+  _incrementNumWrongKeydowns() {
     this.numWrongKeydowns ++;
   }
-  
-  
-
 }
 
 export default TextStats

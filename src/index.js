@@ -5,4 +5,4 @@ const pageView = new PageView();
 
 
 // this is for testing stuff in the console
-// window.tv = textView;
+window.pv = pageView;
