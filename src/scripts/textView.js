@@ -1,4 +1,5 @@
 import TextContent from "./textContent";
+import Timer from "./timer";
 
 class TextView {
   constructor(textContent) {
@@ -8,8 +9,8 @@ class TextView {
     this.textContent = new TextContent(this.CATIPSUM);
     this.numWrongKeydowns = 0;
     this.renderText();
-    // this.displayedIdx = 0;
     this.addBindings();
+    this.renderTimer();
   }
 
   renderText() {
@@ -17,6 +18,12 @@ class TextView {
     const p = this._spanifyText(this.textContent.body);
     container.appendChild(p);
     this._colorCurrentElement();
+  }
+
+  renderTimer() {
+    const container = document.querySelector('.timer-container');
+    const timer = new Timer(60, container);
+    timer.start();
   }
 
   // params: takes in a string of text

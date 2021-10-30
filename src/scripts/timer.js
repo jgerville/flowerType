@@ -1,17 +1,65 @@
 class Timer {
-  constructor(numSeconds) {
+  constructor(numSeconds, container) {
     this.initialTime = numSeconds;
     this.secondsLeft = numSeconds;
+    this.container = container;
   }
 
-  toString() {
-    let time = this.secondsLeft;
-    // if (this.secondsLeft > 60) {
-    //   time = 
-    // }
+  start() {
+    this.render();
+    setInterval(this.decrementAndRender.bind(this, this.container), 1000)
   }
-  
-  decrement() {
+
+  render() {
+    let timeArray = [0, this.secondsLeft];
+    timeArray = this._convertSecsToMins(timeArray);
+
+    const mins = this._addZeroToMins(timeArray[0]);
+    const secs = this._addZeroToSecs(timeArray[1]);
+
+    const formattedTime = `${mins}:${secs}`;
     
+    if (this.container.children.length > 0) {
+      for (const child of this.container.children) {
+        this.container.removeChild(child)
+      }
+    }
+
+    const p = document.createElement('p')
+    p.append(formattedTime);
+    this.container.appendChild(p)
+
+    // return formattedTime;
+  }
+
+  decrementAndRender() {
+    this.secondsLeft -= 1;
+    this.render();
+  }
+
+  _convertSecsToMins(timeArray) {
+    if (timeArray[1] >= 60) {
+      while (timeArray[1] >= 60) {
+        timeArray[1] -= 60;
+        timeArray[0] ++;
+      }
+    }
+    return timeArray;
+  }
+
+  _addZeroToMins(mins) {
+    if (mins < 10) {
+      mins = `0${mins}`;
+    }
+    return mins;
+  }
+
+  _addZeroToSecs(secs) {
+    if (secs < 10) {
+      secs = `0${secs}`
+    }
+    return secs;
   }
 }
+
+export default Timer;
