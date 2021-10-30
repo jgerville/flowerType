@@ -8,9 +8,13 @@ class TextView {
     this.IGNOREDKEYS = ["Tab", "Backspace", "Delete", "Shift", "Escape", "Alt", "CapsLock", "Control", "Fn", "FnLock", "Meta", "NumLock", "ScrollLock", "ArrowDown", "ArrowUp", "ArrowLeft", "ArrowRight", "End", "Home", "PageDown", "PageUp"]
     this.textContent = new TextContent(this.CATIPSUM);
     this.numWrongKeydowns = 0;
+
+    this.timerContainer = document.querySelector('.timer-container');
+    this.timer = new Timer(60, this.timerContainer);
+
     this.renderText();
     this.addBindings();
-    this.renderTimer();
+    this.timer.render();
   }
 
   renderText() {
@@ -18,12 +22,6 @@ class TextView {
     const p = this._spanifyText(this.textContent.body);
     container.appendChild(p);
     this._colorCurrentElement();
-  }
-
-  renderTimer() {
-    const container = document.querySelector('.timer-container');
-    const timer = new Timer(60, container);
-    timer.start();
   }
 
   // params: takes in a string of text
@@ -55,7 +53,9 @@ class TextView {
   _typingListener(e) {
     const key = e.key;
     console.log(key);
+
     if (this._ismatch(key)) {
+      this.startTimer();
       this.correctChar();
     } else if (this._isIgnoredKey(key)) {
       console.log(`${key} will not be counted as incorrect because it's on the ignore list.`)
@@ -75,6 +75,12 @@ class TextView {
     this.textContent.nextChar();
     this._colorCurrentElement();
     console.log(`matched! next up is ${this.textContent.currentChar}`)
+  }
+
+  startTimer() {
+    if (!this.timer.running) {
+      this.timer.start();
+    }
   }
 
   wrongChar() {

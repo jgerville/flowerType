@@ -3,9 +3,11 @@ class Timer {
     this.initialTime = numSeconds;
     this.secondsLeft = numSeconds;
     this.container = container;
+    this.running = false;
   }
 
   start() {
+    this.running = true;
     this.render();
     setInterval(this.decrementAndRender.bind(this, this.container), 1000)
   }
@@ -19,17 +21,18 @@ class Timer {
 
     const formattedTime = `${mins}:${secs}`;
     
+    // makes sure the old times get deleted
     if (this.container.children.length > 0) {
       for (const child of this.container.children) {
         this.container.removeChild(child)
       }
     }
 
+    // create a p element, add it to the timer container
     const p = document.createElement('p')
     p.append(formattedTime);
     this.container.appendChild(p)
 
-    // return formattedTime;
   }
 
   decrementAndRender() {
