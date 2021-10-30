@@ -1,4 +1,5 @@
 import TextContent from "./textContent";
+import TextStats from "./textStats";
 import Timer from "./timer";
 
 class TextView {
@@ -7,7 +8,7 @@ class TextView {
     this.SHORTCATIPSUM = `Cat ipsum dolor sit amet, put butt in owner's face`
     this.IGNOREDKEYS = ["Tab", "Backspace", "Delete", "Shift", "Escape", "Alt", "CapsLock", "Control", "Fn", "FnLock", "Meta", "NumLock", "ScrollLock", "ArrowDown", "ArrowUp", "ArrowLeft", "ArrowRight", "End", "Home", "PageDown", "PageUp"]
     this.textContent = new TextContent(this.CATIPSUM);
-    this.numWrongKeydowns = 0;
+    this.textStats = new TextStats()
 
     this.timerContainer = document.querySelector('.timer-container');
     this.timer = new Timer(60, this.timerContainer);
@@ -86,7 +87,7 @@ class TextView {
   }
 
   wrongChar() {
-    this.numWrongKeydowns ++;
+    this.textStats.numWrongKeydowns ++;
     const wrongEle = this._getCurrentElement();
     if (Array.from(wrongEle.classList).indexOf('still-wrong-char') >= 0) {
       wrongEle.classList.add('very-wrong-char');
@@ -109,9 +110,9 @@ class TextView {
     return currentEle;
   }
 
-  numWordsTyped() {
+  setNumWordsTyped() {
     const currentEle = this._getCurrentElement();
-    return currentEle.dataset.word;
+    this.textStats.numWordsTyped = currentEle.dataset.word;
   }
 
   _isSpace(key) {

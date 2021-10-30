@@ -9,7 +9,6 @@ class Timer {
 
   start() {
     this.running = true;
-    // this.render();
     const interval = setInterval(() => {
       this.secondsLeft -= 1;
       this.render();
