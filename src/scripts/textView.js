@@ -1,4 +1,4 @@
-const TextContent = require("./textContent");
+import TextContent from "./textContent";
 
 class TextView {
   constructor(textContent) {
@@ -24,7 +24,7 @@ class TextView {
   //          and each span has two data attributes: char and word
   _spanifyText(str) {
     const p = document.createElement('p');
-    let wordIdx = 1;
+    let wordIdx = 0;
     for (let i = 0; i < str.length; i++) {
       const span = document.createElement('span');
       span.dataset.char = i;
@@ -94,8 +94,9 @@ class TextView {
     return currentEle;
   }
 
-  _incrementWordsTyped() {
-    this.numWordsTyped ++;
+  numWordsTyped() {
+    const currentEle = this._getCurrentElement();
+    return currentEle.dataset.word;
   }
 
   _isSpace(key) {

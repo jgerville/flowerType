@@ -41,4 +41,4 @@ class TextContent {
   }
 }
 
-module.exports = TextContent;
+export default TextContent;
