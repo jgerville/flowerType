@@ -89,7 +89,7 @@ class TextView {
   wrongChar() {
     // first, update data in TextStats
     this.textStats.incrementNumWrongKeydowns();
-    this.textStats.incrementMissedChar(this.textContent.currentChar);
+    this.textStats.logWrongChar(this.textContent.currentChar,);
 
     // add classes to update visuals
     const wrongEle = this._getCurrentElement();

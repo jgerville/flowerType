@@ -23,11 +23,34 @@ body {
   text-align: center;
 }
 
+.top-half {
+  .text-container {
+    text-align: justify;
+  }
+}
+
 .bottom-half {
   margin-top: 10%;
   border: 2px solid v.$border;
   text-align: center;
   font-size: 2rem;
+  padding: 0 0.5em 0.5em 0.5em;
+}
+
+.bottom-half {
+  > h2 {
+    display: inline-block;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0 0.2em 0.1em 0.2em;
+    border-left: 2px solid v.$border;
+    border-right: 2px solid v.$border;
+    border-bottom: 2px solid v.$border;
+  }
+
+  p {
+    text-align: justify;
+  }
 }
 
 // change max-height by 3 rem for one line of text
