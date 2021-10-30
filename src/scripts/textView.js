@@ -15,7 +15,7 @@ class TextView {
     this.boundTypingListener = this._typingListener.bind(this);
 
     this.renderText();
-    this.timer.render();
+    this.timer.renderInstructions();
     this.addBindings();
   }
 
@@ -71,10 +71,7 @@ class TextView {
 
   correctChar() {
     const correctEle = this._getCurrentElement();
-    correctEle.classList.remove('current-char')
-    correctEle.classList.remove('wrong-char')
-    correctEle.classList.remove('still-wrong-char')
-    correctEle.classList.remove('very-wrong-char')
+    correctEle.classList.remove('current-char', 'wrong-char', 'still-wrong-char', 'very-wrong-char')
     correctEle.classList.add('correct-char');
 
     this.textContent.nextChar();

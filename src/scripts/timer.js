@@ -9,7 +9,7 @@ class Timer {
 
   start() {
     this.running = true;
-    this.render();
+    // this.render();
     const interval = setInterval(() => {
       this.secondsLeft -= 1;
       this.render();
@@ -18,6 +18,12 @@ class Timer {
         this.over = true;
       }
     }, 1000);
+  }
+
+  renderInstructions() {
+    const p = document.createElement('p')
+    p.append('Start Typing When Ready!');
+    this.container.appendChild(p)
   }
 
   render() {
@@ -40,7 +46,6 @@ class Timer {
     const p = document.createElement('p')
     p.append(formattedTime);
     this.container.appendChild(p)
-
   }
 
   _convertSecsToMins(timeArray) {
