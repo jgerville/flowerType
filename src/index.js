@@ -1,8 +1,8 @@
+import PageView from "./scripts/pageView";
 import TextView from "./scripts/textView";
-import Timer from "./scripts/timer"
 
-const textView = new TextView();
+const pageView = new PageView();
 
 
 // this is for testing stuff in the console
-window.tv = textView;
+// window.tv = textView;

@@ -16,15 +16,15 @@ class TextContent {
     }
   }
 
-  // invoke if user presses backspace, unless idx is 0
-  prevChar() {
-    if (this.idx > 0) {
-      this.idx --;
-      this.updateCurrentChar();
-    } else {
-      console.log("Can't backspace; already at idx 0.")
-    }
-  }
+  // // invoke if user presses backspace, unless idx is 0
+  // prevChar() {
+  //   if (this.idx > 0) {
+  //     this.idx --;
+  //     this.updateCurrentChar();
+  //   } else {
+  //     console.log("Can't backspace; already at idx 0.")
+  //   }
+  // }
 
   isMatch(key) {
     return key == this.currentChar;

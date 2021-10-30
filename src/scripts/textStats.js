@@ -11,11 +11,16 @@ class TextStats {
   }
 
   incrementMissedChar(missedKey) {
-    if (this.missedCharCounts[missedKey]) {
-      this.missedCharCounts[missedKey] ++;
+    const upcaseKey = missedKey.toUpperCase();
+    if (this.missedCharCounts[upcaseKey]) {
+      this.missedCharCounts[upcaseKey] ++;
     } else {
-      this.missedCharCounts[missedKey] = 1;
+      this.missedCharCounts[upcaseKey] = 1;
     }
+  }
+
+  incrementNumWrongKeydowns() {
+    this.numWrongKeydowns ++;
   }
   
 }

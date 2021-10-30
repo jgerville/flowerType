@@ -1,0 +1,26 @@
+@use 'variables' as v;
+
+.timer-container {
+  display: inline-block;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 2rem;
+  padding: 0 0.2em 0.2em 0.2em;
+  border-left: 2px solid v.$border;
+  border-right: 2px solid v.$border;
+  border-bottom: 2px solid v.$border;
+
+  transition: color 0.7s ease-out;
+}
+
+.last-twenty-seconds {
+  color: v.$wrong;
+}
+
+.last-ten-seconds {
+  color: v.$still-wrong;
+}
+
+.last-three-seconds {
+  color: v.$very-wrong;
+}

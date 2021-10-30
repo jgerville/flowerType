@@ -11,6 +11,7 @@ class Timer {
     this.running = true;
     const interval = setInterval(() => {
       this.secondsLeft -= 1;
+
       this.render();
       if (this.secondsLeft === 0) {
         clearInterval(interval);
@@ -45,6 +46,17 @@ class Timer {
     const p = document.createElement('p')
     p.append(formattedTime);
     this.container.appendChild(p)
+    this._addTimerColor(this.secondsLeft);
+  }
+
+  _addTimerColor(secondsLeft) {
+    if (secondsLeft === 20) {
+      this.container.classList.add('last-twenty-seconds')
+    } else if (secondsLeft === 10) {
+      this.container.classList.add('last-ten-seconds')
+    } else if (secondsLeft === 3) {
+      this.container.classList.add('last-three-seconds')
+    }
   }
 
   _convertSecsToMins(timeArray) {

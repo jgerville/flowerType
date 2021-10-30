@@ -11,7 +11,7 @@ class TextView {
     this.textStats = new TextStats()
 
     this.timerContainer = document.querySelector('.timer-container');
-    this.timer = new Timer(60, this.timerContainer);
+    this.timer = new Timer(30, this.timerContainer);
 
     this.boundTypingListener = this._typingListener.bind(this);
 
@@ -87,7 +87,11 @@ class TextView {
   }
 
   wrongChar() {
-    this.textStats.numWrongKeydowns ++;
+    // first, update data in TextStats
+    this.textStats.incrementNumWrongKeydowns();
+    this.textStats.incrementMissedChar(this.textContent.currentChar);
+
+    // add classes to update visuals
     const wrongEle = this._getCurrentElement();
     if (Array.from(wrongEle.classList).indexOf('still-wrong-char') >= 0) {
       wrongEle.classList.add('very-wrong-char');

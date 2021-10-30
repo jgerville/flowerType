@@ -6,17 +6,28 @@ body {
   background-color: v.$off-white;
 }
 
+.hidden {
+  display: none;
+}
+
 .page-container {
-  margin: 10em 3em 0 3em;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  margin: 10% 3em 0 3em;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: center;
+  // align-items: center;
 }
 
 .top-half {
-  border: 1px solid v.$green;
+  border: 2px groove v.$border;
   text-align: center;
+}
+
+.bottom-half {
+  margin-top: 10%;
+  border: 2px solid v.$border;
+  text-align: center;
+  font-size: 2rem;
 }
 
 // change max-height by 3 rem for one line of text
@@ -24,15 +35,4 @@ body {
   overflow: hidden;
   max-height: 18rem;
   padding: 0 1em 1em 1em;
-}
-
-.timer {
-  display: inline-block;
-  margin: 0 auto;
-  text-align: center;
-  font-size: 2rem;
-  padding: 0 0.2em 0.2em 0.2em;
-  border-left: 1px solid black;
-  border-right: 1px solid black;
-  border-bottom: 1px solid black;
 }
