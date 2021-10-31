@@ -26,27 +26,35 @@ class TextStats {
     const p3 = document.createElement('p');
     const ul = document.createElement('ul');
     for (const key in this.rightCharWrongChar) {
+      // structure: li>p,ul>li, li, li
       const li = document.createElement('li');
 
+      
       const innerP = document.createElement('p');
-      innerP.append(`instead of ${key}, you typed:`)
+      let printKey = key;
+      if (printKey === " ") {
+        printKey = "Space";
+      }
+      innerP.append(`instead of ${printKey}, you typed:`)
       li.appendChild(innerP);
       
       const innerUl = document.createElement('ul');
       for (const wrongKey in this.rightCharWrongChar[key]) {
         const innerLi = document.createElement('li');
         const value = this.rightCharWrongChar[key][wrongKey]
-        if (wrongKey === " ") wrongKey = "Space"
+        let printWrongKey = wrongKey.toUpperCase();
+        if (printWrongKey === " ") {
+          printWrongKey = "Space";
+        }
         if (value > 1) {
-          innerLi.append(`${wrongKey}: ${value} times`);
+          innerLi.append(`${printWrongKey}: ${value} times`);
         } else {
-          innerLi.append(`${wrongKey}: 1 time`);
+          innerLi.append(`${printWrongKey}: 1 time`);
         }
         innerUl.appendChild(innerLi);
       }
-
+      li.appendChild(innerUl);
       ul.appendChild(li);
-      ul.appendChild(innerUl);
     }
     
     div.appendChild(p1);
