@@ -32,7 +32,7 @@ class TextStats {
     div.appendChild(p2);
     div.appendChild(p3);
     div.appendChild(ul);
-    return div;
+    container.appendChild(div);
   }
 
   setNumWordsTyped(currentSpan) {

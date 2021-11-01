@@ -12,10 +12,14 @@ class Timer {
     const interval = setInterval(() => {
       this.secondsLeft -= 1;
 
-      this.render();
       if (this.secondsLeft === 0) {
-        clearInterval(interval);
+        this.render();
         this.over = true;
+      } else if (this.secondsLeft < 0) {
+        this.renderButton();
+        clearInterval(interval);
+      } else {
+        this.render();
       }
     }, 1000);
   }
@@ -47,6 +51,21 @@ class Timer {
     p.append(formattedTime);
     this.container.appendChild(p)
     this._addTimerColor(this.secondsLeft);
+  }
+
+  renderButton() {
+    const button = document.createElement('button');
+    button.append('View Stats');
+    button.classList.add('stats-button')
+
+    // clear the container first
+    if (this.container.children.length > 0) {
+      for (const child of this.container.children) {
+        this.container.removeChild(child)
+      }
+    }
+
+    this.container.appendChild(button);
   }
 
   _addTimerColor(secondsLeft) {
