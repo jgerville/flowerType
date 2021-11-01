@@ -24,41 +24,13 @@ class TextStats {
     p2.append(`Typing speed: ${wpm} words/minute`);
 
     const p3 = document.createElement('p');
-    const ul = document.createElement('ul');
-    for (const key in this.rightCharWrongChar) {
-      // structure: li>p,ul>li, li, li
-      const li = document.createElement('li');
+    p3.append(`Wrong keys: ${this.numWrongKeydowns}`);
 
-      
-      const innerP = document.createElement('p');
-      let printKey = key;
-      if (printKey === " ") {
-        printKey = "Space";
-      }
-      innerP.append(`instead of ${printKey}, you typed:`)
-      li.appendChild(innerP);
-      
-      const innerUl = document.createElement('ul');
-      for (const wrongKey in this.rightCharWrongChar[key]) {
-        const innerLi = document.createElement('li');
-        const value = this.rightCharWrongChar[key][wrongKey]
-        let printWrongKey = wrongKey.toUpperCase();
-        if (printWrongKey === " ") {
-          printWrongKey = "Space";
-        }
-        if (value > 1) {
-          innerLi.append(`${printWrongKey}: ${value} times`);
-        } else {
-          innerLi.append(`${printWrongKey}: 1 time`);
-        }
-        innerUl.appendChild(innerLi);
-      }
-      li.appendChild(innerUl);
-      ul.appendChild(li);
-    }
+    const ul = this._createRightCharWrongCharElement();
     
     div.appendChild(p1);
     div.appendChild(p2);
+    div.appendChild(p3);
     div.appendChild(ul);
     return div;
   }
@@ -90,6 +62,42 @@ class TextStats {
       this.rightCharWrongChar[upcaseKey] = {};
       this.rightCharWrongChar[upcaseKey][typedKey] = 1;
     }
+  }
+
+  _createRightCharWrongCharElement() {
+    const ul = document.createElement('ul');
+    for (const key in this.rightCharWrongChar) {
+      // structure: li>p,ul>li, li, li
+      const li = document.createElement('li');
+
+
+      const innerP = document.createElement('p');
+      let printKey = key;
+      if (printKey === " ") {
+        printKey = "Space";
+      }
+      innerP.append(`instead of ${printKey}, you typed:`)
+      li.appendChild(innerP);
+      
+      const innerUl = document.createElement('ul');
+      for (const wrongKey in this.rightCharWrongChar[key]) {
+        const innerLi = document.createElement('li');
+        const value = this.rightCharWrongChar[key][wrongKey]
+        let printWrongKey = wrongKey.toUpperCase();
+        if (printWrongKey === " ") {
+          printWrongKey = "Space";
+        }
+        if (value > 1) {
+          innerLi.append(`${printWrongKey}: ${value} times`);
+        } else {
+          innerLi.append(`${printWrongKey}: 1 time`);
+        }
+        innerUl.appendChild(innerLi);
+      }
+      li.appendChild(innerUl);
+      ul.appendChild(li);
+    }
+    return ul;
   }
 
   _incrementNumWrongKeydowns() {
