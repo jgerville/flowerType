@@ -16,14 +16,14 @@ class TextView {
 
     this.boundTypingListener = this._typingListener.bind(this);
 
-    this.renderText();
+    this._renderText();
     this.timer.renderInstructions();
-    this.addBindings();
+    this._addBindings();
 
     this.numWordsShifted = 0;
   }
 
-  renderText() {
+  _renderText() {
     const p = this._spanifyText(this.textContent.body);
     this.container.appendChild(p);
     this._colorCurrentElement();
@@ -46,12 +46,12 @@ class TextView {
     return p;
   }
 
-  addBindings() {
+  _addBindings() {
     document.addEventListener('keydown', this.boundTypingListener);
   }
 
   // currently not being called anywhere
-  removeBindings() {
+  _removeBindings() {
     document.removeEventListener('keydown', this.boundTypingListener);
   }
 
@@ -61,7 +61,7 @@ class TextView {
     const key = e.key;
 
     if (this.timer.over) {
-      this.removeBindings();
+      this._removeBindings();
     } else {
       if (this._ismatch(key)) {
         this._startTimer();

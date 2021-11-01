@@ -1,5 +1,4 @@
 import PageView from "./scripts/pageView";
-import TextView from "./scripts/textView";
 
 const pageView = new PageView();
 
