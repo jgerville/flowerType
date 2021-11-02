@@ -70,8 +70,8 @@ class PageView {
   addRestartButtonListener() {
     const timerContainer = document.querySelector('.timer-container');
     timerContainer.addEventListener('click', (e) => {
-      e.preventDefault();
       if (e.target.classList.contains('restart-button')) {
+        e.preventDefault();
         PageView.resetPage();
       }
     })

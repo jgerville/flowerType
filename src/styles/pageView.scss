@@ -7,6 +7,8 @@ body {
 }
 
 button {
+  margin: 0 5px;
+	padding: 12px 20px;
 	background-color: v.$right;
   border: none;
 	border-radius:28px;
@@ -14,7 +16,6 @@ button {
 	color:#ffffff;
   font-family: inherit;
 	font-size:17px;
-	padding: 12px 20px;
 
   &:hover {
 	background-color: v.$border;
@@ -23,6 +24,10 @@ button {
   &:active {
 	background-color: v.$border;
   }
+}
+
+form {
+  display: inline-block;
 }
 
 .hidden {

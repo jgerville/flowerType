@@ -73,24 +73,28 @@ class Timer {
     restartButton.append('Restart');
     restartButton.classList.add('restart-button');
 
+    const ghbForm = document.createElement('form');
+    ghbForm.action = 'https://github.com/jgerville';
     const githubButton = document.createElement('button');
     githubButton.append('Github');
     githubButton.classList.add('github-button');
+    githubButton.type = 'submit';
+    ghbForm.appendChild(githubButton);
 
     const linkedInButton = document.createElement('button');
     linkedInButton.append('LinkedIn');
     linkedInButton.classList.add('linkedIn-button');
 
-    // clear the container first
+    // clear the container
     if (this.container.children.length > 0) {
       for (const child of this.container.children) {
         this.container.removeChild(child)
       }
     }
 
+    this.container.appendChild(ghbForm);
     this.container.appendChild(restartButton);
-    this.container.appendChild(githubButton);
-    this.container.appendChild(button);
+    this.container.appendChild(linkedInButton);
   }
 
   _addTimerColor(secondsLeft) {
