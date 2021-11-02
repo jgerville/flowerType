@@ -1,7 +1,7 @@
 import PageView from "./scripts/pageView";
 import Start from "./scripts/start";
 
-const pageView = new PageView();
+let pageView = new PageView();
 
 
 // this is for testing stuff in the console

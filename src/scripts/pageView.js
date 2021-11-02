@@ -11,6 +11,7 @@ class PageView {
 
     this.addStartButtonListener();
     this.addStatsButtonListener();
+    this.addRestartButtonListener();
   }
 
 
@@ -23,8 +24,6 @@ class PageView {
     this.start.button.removeEventListener('click', this.startButtonHandler);
       
     await this.start.generateText();
-    console.log(this.start.container);
-    console.log(this.start.container.classList);
     this.start.container.classList.add('hidden');
     this._renderTextView(this.start.textGenerated);
   }
@@ -56,6 +55,50 @@ class PageView {
         statsContainer.classList.remove('hidden');
       }
     })
+  }
+
+  addRestartButtonListener() {
+    const timerContainer = document.querySelector('.timer-container');
+    timerContainer.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (e.target.classList.contains('restart-button')) {
+        PageView.resetPage();
+      }
+    })
+  }
+
+  static resetPage() {
+    const startContainer = document.querySelector('.start-container');
+    PageView._removeChildren(startContainer);
+    PageView._removeHidden(startContainer);
+
+    const timerContainer = document.querySelector('.timer-container');
+    PageView._removeChildren(timerContainer);
+    PageView._addHidden(timerContainer);
+
+    const textContainer = document.querySelector('.text-container');
+    PageView._removeChildren(textContainer);
+    PageView._addHidden(textContainer);
+
+    const statsContainer = document.querySelector('.stats-container');
+    PageView._removeChildren(statsContainer);
+    PageView._addHidden(statsContainer);
+
+    let pageView = new PageView();
+  }
+
+  static _removeChildren(element) {
+    while (element.children.length > 0) {
+      element.removeChild(element.children[0]);
+    }
+  }
+
+  static _removeHidden(element) {
+    element.classList.remove('hidden');
+  }
+
+  static _addHidden(element) {
+    element.classList.add('hidden');
   }
 
 }
