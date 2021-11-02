@@ -1,0 +1,22 @@
+.stats-container div {
+  p {
+    font-family: inherit;
+    font-size: 1.5rem;
+  }
+
+  ul {
+    li {
+      p {
+        font-family: inherit;
+        font-size: 1.5rem;
+      }
+
+      ul {
+        li {
+          font-family: inherit;
+          font-size: 1.2rem;
+        }
+      }
+    }
+  }
+}

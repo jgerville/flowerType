@@ -23,10 +23,12 @@ class PageView {
   async startButtonHandler (e) {
     e.preventDefault();
     this.start.button.removeEventListener('click', this.boundStartHandler);
-    this.start.button.innerText = 'Generating, please wait...'
+    this.start.button.innerText = 'Generating, please wait...';
     // this.start.button.disabled = true;
     await this.start.generateText();
-    this.start.container.classList.add('hidden');
+
+    PageView._addHidden(this.start.container);
+    PageView._addHidden(document.querySelector('.bottom-half'));
     this._renderTextView(this.start.textGenerated);
   }
 
@@ -95,6 +97,10 @@ class PageView {
     const statsContainer = document.querySelector('.stats-container');
     PageView._removeChildren(statsContainer);
     PageView._addHidden(statsContainer);
+
+    // might want to change 102-103 depending on more content
+    const instructionsContainer = document.querySelector('.bottom-half');
+    PageView._removeHidden(instructionsContainer);
 
     new PageView();
   }
