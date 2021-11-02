@@ -1,6 +1,6 @@
-import deepai from 'deepai';
-import {connect} from './reference';
-connect(deepai);
+// import deepai from 'deepai';
+// import {connect} from './reference';
+// connect(deepai);
 // deepai.setApiKey('5c0c2078-3024-42ff-bc2c-21a937d56980');
 
 class Start {
@@ -30,9 +30,7 @@ class Start {
     const input = document.getElementById('sentence-input');
     const value = input.value;
     input.value = '';
-    const resp = await deepai.callStandardApi("text-generator", {
-            text: value,
-    });
+    const resp = await fetch(`/api?value=${encodeURIComponent(value)}`);
     this.textGenerated = resp.output
   }
 

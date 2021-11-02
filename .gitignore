@@ -42,6 +42,10 @@ build/Release
 node_modules/
 jspm_packages/
 /src/scripts/reference.js
+main.js
+main.js.map
+main.css
+main.css.map
 
 # Snowpack dependency directory (https://snowpack.dev/)
 web_modules/
