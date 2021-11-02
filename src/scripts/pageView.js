@@ -24,7 +24,6 @@ class PageView {
     await this.start.generateText();
 
     this.start.container.classList.add('hidden');
-    this.start.buttonContainer.classList.add('hidden');
     this._renderTextView(this.start.textGenerated);
     this.start.button.removeEventListener('click', this.startButtonHandler);
   }
