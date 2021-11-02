@@ -1,6 +1,6 @@
 import Start from "./start";
 import TextView from "./textView";
-import {test} from "../../app";
+// import {test} from "../../app";
 
 class PageView {
   constructor() {
