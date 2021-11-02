@@ -31,11 +31,13 @@ class PageView {
 
   _renderTextView(text) {
     const topHalf = document.querySelector('.top-half');
-    // THIS IS WHERE I'M UNHIDING IT
-    for (const child of topHalf.children) {
+    
+    const topHalfChildren = Array.from(topHalf.children);
+    for (let i = 1; i < topHalfChildren.length; i++) {
+      const child = topHalfChildren[i];
       child.classList.remove('hidden');
     }
-    // FIX THIS TOMORROW
+
     const timerContainer = document.querySelector('.timer-container');
     timerContainer.classList.add('ib')
     this.textView = new TextView(text);

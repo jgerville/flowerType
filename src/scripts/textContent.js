@@ -17,7 +17,8 @@ class TextContent {
   }
 
   chompNewLines(body) {
-    return body.replace(/\n/g, " ");
+    console.log(body)
+    return body.replace(/\s{2,}/g, " ");
   }
 
   isMatch(key) {
