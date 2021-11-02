@@ -6,6 +6,25 @@ body {
   background-color: v.$off-white;
 }
 
+button {
+	background-color: v.$right;
+  border: none;
+	border-radius:28px;
+	cursor:pointer;
+	color:#ffffff;
+  font-family: inherit;
+	font-size:17px;
+	padding: 12px 20px;
+
+  &:hover {
+	background-color: v.$border;
+  }
+
+  &:active {
+	background-color: v.$border;
+  }
+}
+
 .hidden {
   display: none;
 }
