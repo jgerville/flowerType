@@ -76,7 +76,7 @@ class TextStats {
       if (printKey === " ") {
         printKey = "Space";
       }
-      innerP.append(`instead of ${printKey}, you typed:`)
+      innerP.append(`instead of ${printKey} , you typed:`)
       li.appendChild(innerP);
       
       const innerUl = document.createElement('ul');
@@ -88,9 +88,9 @@ class TextStats {
           printWrongKey = "Space";
         }
         if (value > 1) {
-          innerLi.append(`${printWrongKey}: ${value} times`);
+          innerLi.append(`${printWrongKey} : ${value} times`);
         } else {
-          innerLi.append(`${printWrongKey}: 1 time`);
+          innerLi.append(`${printWrongKey} : 1 time`);
         }
         innerUl.appendChild(innerLi);
       }

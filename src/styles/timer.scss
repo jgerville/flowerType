@@ -1,7 +1,6 @@
 @use 'variables' as v;
 
 .timer-container {
-  display: inline-block;
   margin: 0 auto;
   text-align: center;
   font-size: 2rem;
@@ -11,6 +10,10 @@
   border-bottom: 2px solid v.$border;
 
   transition: color 0.7s ease-out;
+}
+
+.ib {
+  display: inline-block;
 }
 
 .last-twenty-seconds {

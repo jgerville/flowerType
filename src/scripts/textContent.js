@@ -1,6 +1,6 @@
 class TextContent {
   constructor(body) {
-    this.body = body;
+    this.body = this.chompNewLines(body);
     this.length = this.body.length;
     this.idx = 0;
     this.currentChar = this.body[this.idx];
@@ -16,15 +16,9 @@ class TextContent {
     }
   }
 
-  // // invoke if user presses backspace, unless idx is 0
-  // prevChar() {
-  //   if (this.idx > 0) {
-  //     this.idx --;
-  //     this.updateCurrentChar();
-  //   } else {
-  //     console.log("Can't backspace; already at idx 0.")
-  //   }
-  // }
+  chompNewLines(body) {
+    return body.replace(/\n/g, " ");
+  }
 
   isMatch(key) {
     return key == this.currentChar;
