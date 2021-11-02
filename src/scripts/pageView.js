@@ -8,6 +8,7 @@ class PageView {
     this.textStats;
 
     this.boundStartHandler = this.startButtonHandler.bind(this);
+    this.boundStatsHandler = this.statsButtonHandler.bind(this);
 
     this.addStartButtonListener();
     this.addStatsButtonListener();
@@ -21,8 +22,9 @@ class PageView {
 
   async startButtonHandler (e) {
     e.preventDefault();
-    this.start.button.removeEventListener('click', this.startButtonHandler);
-      
+    this.start.button.removeEventListener('click', this.boundStartHandler);
+    this.start.button.innerText = 'Generating, please wait...'
+    // this.start.button.disabled = true;
     await this.start.generateText();
     this.start.container.classList.add('hidden');
     this._renderTextView(this.start.textGenerated);
@@ -45,16 +47,22 @@ class PageView {
 
   addStatsButtonListener() {
     const timerContainer = document.querySelector('.timer-container');
-    timerContainer.addEventListener('click', (e) => {
-      e.preventDefault();
-      if (e.target.classList.contains('stats-button')) {
-        const textContainer = document.querySelector('.text-container');
-        const statsContainer = document.querySelector('.stats-container')
-        textContainer.classList.add('hidden');
-        this.textStats.render(statsContainer);
-        statsContainer.classList.remove('hidden');
-      }
-    })
+    timerContainer.addEventListener('click', this.boundStatsHandler)
+  }
+
+  statsButtonHandler(e) {
+    e.preventDefault();
+    const timerContainer = document.querySelector('.timer-container');
+    timerContainer.removeEventListener('click', this.boundStatsHandler);
+
+    if (e.target.classList.contains('stats-button')) {
+      const textContainer = document.querySelector('.text-container');
+      const statsContainer = document.querySelector('.stats-container')
+      textContainer.classList.add('hidden');
+      this.textStats.render(statsContainer);
+      statsContainer.classList.remove('hidden');
+      this.textView.timer.renderRestartButton();
+    }
   }
 
   addRestartButtonListener() {
@@ -75,6 +83,10 @@ class PageView {
     const timerContainer = document.querySelector('.timer-container');
     PageView._removeChildren(timerContainer);
     PageView._addHidden(timerContainer);
+    timerContainer.classList.remove('ib');
+    timerContainer.classList.remove('last-twenty-seconds');
+    timerContainer.classList.remove('last-ten-seconds');
+    timerContainer.classList.remove('last-three-seconds');
 
     const textContainer = document.querySelector('.text-container');
     PageView._removeChildren(textContainer);
@@ -84,7 +96,7 @@ class PageView {
     PageView._removeChildren(statsContainer);
     PageView._addHidden(statsContainer);
 
-    let pageView = new PageView();
+    new PageView();
   }
 
   static _removeChildren(element) {
@@ -100,6 +112,8 @@ class PageView {
   static _addHidden(element) {
     element.classList.add('hidden');
   }
+
+
 
 }
 

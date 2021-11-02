@@ -16,7 +16,7 @@ class Timer {
         this.render();
         this.over = true;
       } else if (this.secondsLeft < 0) {
-        this.renderButton();
+        this.renderStatsButton();
         clearInterval(interval);
       } else {
         this.render();
@@ -53,10 +53,25 @@ class Timer {
     this._addTimerColor(this.secondsLeft);
   }
 
-  renderButton() {
+  renderStatsButton() {
     const button = document.createElement('button');
     button.append('View Stats');
     button.classList.add('stats-button')
+
+    // clear the container first
+    if (this.container.children.length > 0) {
+      for (const child of this.container.children) {
+        this.container.removeChild(child)
+      }
+    }
+
+    this.container.appendChild(button);
+  }
+
+  renderRestartButton() {
+    const button = document.createElement('button');
+    button.append('Restart');
+    button.classList.add('restart-button')
 
     // clear the container first
     if (this.container.children.length > 0) {

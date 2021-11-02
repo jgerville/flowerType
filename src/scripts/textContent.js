@@ -1,6 +1,6 @@
 class TextContent {
   constructor(body) {
-    this.body = this.chompNewLines(body);
+    this.body = this.makeTypeable(body);
     this.length = this.body.length;
     this.idx = 0;
     this.currentChar = this.body[this.idx];
@@ -16,8 +16,9 @@ class TextContent {
     }
   }
 
-  chompNewLines(body) {
+  makeTypeable(body) {
     console.log(body)
+    body = body.replace(/…/g, "...");
     return body.replace(/\s{2,}/g, " ");
   }
 
