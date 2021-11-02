@@ -1,5 +1,7 @@
 import deepai from 'deepai';
-deepai.setApiKey('5c0c2078-3024-42ff-bc2c-21a937d56980');
+import {connect} from './reference';
+connect(deepai);
+// deepai.setApiKey('5c0c2078-3024-42ff-bc2c-21a937d56980');
 
 class Start {
   constructor() {

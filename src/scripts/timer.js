@@ -69,9 +69,17 @@ class Timer {
   }
 
   renderRestartButton() {
-    const button = document.createElement('button');
-    button.append('Restart');
-    button.classList.add('restart-button')
+    const restartButton = document.createElement('button');
+    restartButton.append('Restart');
+    restartButton.classList.add('restart-button');
+
+    const githubButton = document.createElement('button');
+    githubButton.append('Github');
+    githubButton.classList.add('github-button');
+
+    const linkedInButton = document.createElement('button');
+    linkedInButton.append('LinkedIn');
+    linkedInButton.classList.add('linkedIn-button');
 
     // clear the container first
     if (this.container.children.length > 0) {
@@ -80,6 +88,8 @@ class Timer {
       }
     }
 
+    this.container.appendChild(restartButton);
+    this.container.appendChild(githubButton);
     this.container.appendChild(button);
   }
 
