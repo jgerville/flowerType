@@ -20,19 +20,22 @@ class PageView {
 
   async startButtonHandler (e) {
     e.preventDefault();
+    this.start.button.removeEventListener('click', this.startButtonHandler);
       
     await this.start.generateText();
-
+    console.log(this.start.container);
+    console.log(this.start.container.classList);
     this.start.container.classList.add('hidden');
     this._renderTextView(this.start.textGenerated);
-    this.start.button.removeEventListener('click', this.startButtonHandler);
   }
 
   _renderTextView(text) {
     const topHalf = document.querySelector('.top-half');
+    // THIS IS WHERE I'M UNHIDING IT
     for (const child of topHalf.children) {
       child.classList.remove('hidden');
     }
+    // FIX THIS TOMORROW
     const timerContainer = document.querySelector('.timer-container');
     timerContainer.classList.add('ib')
     this.textView = new TextView(text);
