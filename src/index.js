@@ -1,7 +1,13 @@
 import PageView from "./scripts/pageView";
-import Start from "./scripts/start";
 
 let pageView = new PageView();
+
+const canvasEl = document.getElementById("graphics-canvas");
+const canvasParent = document.querySelector(".bottom-half");
+canvasEl.width = canvasParent.offsetWidth * 0.99;
+canvasEl.height = canvasParent.offsetHeight * 1.1;
+const ctx = canvasEl.getContext("2d");
+window.ctx = ctx;
 
 
 // this is for testing stuff in the console

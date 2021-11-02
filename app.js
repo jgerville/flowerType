@@ -4,7 +4,9 @@ const path = require('path');
 
 const deepai = require('deepai');
 deepai.setAPIKey(process.env.DEEPAI_KEY);
-
+// export const test = () => {
+//   console.log(process.env.DEEPAI_KEY);
+// };
 require('dotenv').config();
 
 const app = express();

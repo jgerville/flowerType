@@ -31,7 +31,7 @@ form {
 }
 
 #graphics-canvas {
-  background-color: v.$off-white;
+  background-color: v.$wrong;
 }
 
 .hidden {
@@ -58,11 +58,12 @@ form {
 }
 
 .bottom-half {
+  position: relative;
   margin-top: 10%;
   border: 2px solid v.$border;
   text-align: center;
   font-size: 2rem;
-  padding: 0 0.5em 0.5em 0.5em;
+  // padding: 0 0.5em 0.5em 0.5em;
 }
 
 .bottom-half {
@@ -70,7 +71,7 @@ form {
     display: inline-block;
     margin: 0 auto;
     text-align: center;
-    padding: 0 0.2em 0.1em 0.2em;
+    padding: 0 0.2em 0.2em;
     border-left: 2px solid v.$border;
     border-right: 2px solid v.$border;
     border-bottom: 2px solid v.$border;
@@ -79,6 +80,9 @@ form {
   p {
     text-align: justify;
   }
+   canvas {
+    //  margin-left: -0.55em;
+   }
 }
 
 // change max-height by 3 rem for one line of text

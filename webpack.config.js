@@ -32,6 +32,25 @@ const config = {
       }
     ],
   },
+  resolve: {
+    fallback: {
+      "buffer": false,
+      "fs": false,
+      "tls": false,
+      "net": false,
+      "path": false,
+      "zlib": false,
+      "http": false,
+      "https": false,
+      "stream": false,
+      "crypto": false,
+      "querystring": false,
+      "os": false,
+      "string_decoder": false,
+      "util": false,
+      "url": false,
+    }
+  },
   plugins: [new MiniCssExtractPlugin()],
 };
 
