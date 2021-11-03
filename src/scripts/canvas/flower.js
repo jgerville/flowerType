@@ -9,7 +9,7 @@ class Flower {
 
     this.stemStepsLeft = this._getStemLength();
     this.stemNotComplete = true;
-    this.petals = [];
+    this.petal;
 
     const x = Math.random() * this.WIDTH;
     const y = this.HEIGHT;
@@ -25,11 +25,11 @@ class Flower {
     if (this.stemNotComplete) {
       this.drawStem();
     } else {
-      if (this.petals.length === 0) {
-        this.petals.push(new Petal(this.ctx, this.pos, this.petalColor, Flower.randomColor(), Flower.randomColor()));
+      if (!this.petal) {
+        this.petal = new Petal(this.ctx, this.pos, this.petalColor, Flower.randomColor(), Flower.randomColor());
       }
-      if (this.petals[0].petalNotComplete) {
-        this.petals[0].draw();
+      if (this.petal.petalNotComplete) {
+        this.petal.draw();
       }
     }
   }
@@ -52,9 +52,9 @@ class Flower {
       this.pos[1] += this.vel[1];
     }
 
-    if (this.petals.length > 0) {
-      if (this.petals[0].petalNotComplete) {
-        this.petals[0].move();
+    if (this.petal) {
+      if (this.petal.petalNotComplete) {
+        this.petal.move();
       }
     }
   }
