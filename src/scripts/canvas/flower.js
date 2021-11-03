@@ -27,7 +27,7 @@ class Flower {
       this.drawStem();
     } else {
       if (this.petals.length === 0) {
-        this.petals.push(new Petal(this.ctx, this.pos, this.petalColor));
+        this.petals.push(new Petal(this.ctx, this.pos, this.petalColor, Flower.randomColor(), Flower.randomColor()));
       }
       if (this.petals[0].petalNotComplete) {
         this.petals[0].draw();
