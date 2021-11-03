@@ -1,14 +1,14 @@
 class Laser {
   constructor(ctx, width, height) {
     this.ctx = ctx;
-    this.cvw = width;
-    this.CANVASHEIGHT = height;
+    this.WIDTH = width;
+    this.HEIGHT = height;
 
-    const x = Math.random() * this.cvw;
-    const y = Math.random() * this.CANVASHEIGHT;
+    const x = Math.random() * this.WIDTH;
+    const y = Math.random() * this.HEIGHT;
     this.pos = [x, y];
 
-    this.radius = 1;
+    this.radius = 0.5;
     // this.pos = Laser.randomPosition();
     this.vel = Laser.randomVelocity();
     this.color = Laser.randomColor();
@@ -24,10 +24,25 @@ class Laser {
   move() {
     this.pos[0] += this.vel[0];
     this.pos[1] += this.vel[1];
-    // add something here for if it hits a border
+    this._bounce();
   }
 
-  isColliding(otherLaser) {
+  _bounce() {
+    if (this.pos[0] < 0) {
+      this.vel[0] *= -1;
+    }
+    if (this.pos[0] > this.WIDTH){
+      this.vel[0] *= -1;
+    }
+    if (this.pos[1] < 0) {
+      this.vel[1] *= -1;
+    }
+    if (this.pos[1] > this.HEIGHT) {
+      this.vel[1] *= -1;
+    }
+  }
+
+  isCollidingWith(otherLaser) {
     let dist = Math.sqrt(Math.pow(this.pos[0] - otherObject.pos[0], 2) + Math.pow(this.pos[1] - otherObject.pos[1], 2));
     return (this.radius + otherLaser.radius) > dist;
   }

@@ -7,9 +7,11 @@ class PageView {
     this.textView;
     this.textStats;
     this.canvasView = canvasView;
+    this.canvasInterval;
 
     this.boundStartHandler = this.startButtonHandler.bind(this);
     this.boundStatsHandler = this.statsButtonHandler.bind(this);
+    this.boundRestartHandler = this.restartButtonHandler.bind(this);
 
     this.addStartButtonListener();
     this.addStatsButtonListener();
@@ -31,6 +33,7 @@ class PageView {
     PageView._addHidden(this.start.container);
     PageView._addHidden(document.querySelector('.instructions'));
     PageView._removeHidden(document.getElementById('graphics-canvas'))
+    
     this._renderTextView(this.start.textGenerated);
   }
 
@@ -45,8 +48,8 @@ class PageView {
 
     const timerContainer = document.querySelector('.timer-container');
     timerContainer.classList.add('ib')
-    this.textView = new TextView(text, this.canvasView);
-    this.canvasView.start()
+    this.canvasInterval = this.canvasView.start()
+    this.textView = new TextView(text, this.canvasView, this.canvasInterval);
     this.textStats = this.textView.textStats;
   }
 
@@ -72,15 +75,20 @@ class PageView {
 
   addRestartButtonListener() {
     const timerContainer = document.querySelector('.timer-container');
-    timerContainer.addEventListener('click', (e) => {
-      if (e.target.classList.contains('restart-button')) {
-        e.preventDefault();
-        PageView.resetPage();
-      }
-    })
+    timerContainer.addEventListener('click', this.boundRestartHandler)
   }
 
-  static resetPage() {
+  restartButtonHandler(e) {
+    if (e.target.classList.contains('restart-button')) {
+      e.preventDefault();
+      const timerContainer = document.querySelector('.timer-container');
+      timerContainer.removeEventListener('click', this.boundRestartHandler);
+
+      this.resetPage();
+    }
+  }
+
+  resetPage() {
     const startContainer = document.querySelector('.start-container');
     PageView._removeChildren(startContainer);
     PageView._removeHidden(startContainer);
@@ -102,10 +110,13 @@ class PageView {
     PageView._addHidden(statsContainer);
 
     // might want to change 102-103 depending on more content
-    const instructionsContainer = document.querySelector('.bottom-half');
+    const instructionsContainer = document.querySelector('.instructions');
     PageView._removeHidden(instructionsContainer);
 
-    new PageView();
+    PageView._addHidden(document.getElementById('graphics-canvas'))
+
+    this.canvasView.clearCanvas();
+    new PageView(this.canvasView);
   }
 
   static _removeChildren(element) {

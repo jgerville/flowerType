@@ -9,10 +9,12 @@ class CanvasView {
   }
 
   start() {
-    setInterval(() => {
+    const interval = setInterval(() => {
       this.moveLasers();
+      this.checkCollisions();
       this.draw();
     }, 20);
+    return interval;
   }
 
   addLaser() {
@@ -30,6 +32,34 @@ class CanvasView {
       laser.move();
     }
   }
+
+
+
+  checkCollisions() {
+    // for (let i = 0; i < this.lasers.length - 1; i++) {
+    //   for (let j = i + 1; j < this.lasers.length; j++) {
+    //     if (this.lasers[i].isCollidingWith(this.lasers[j]) {
+
+    //     }
+    //   }
+    // }
+    for (const laser of this.lasers) {
+      // get image data of current position
+      // check if it's equal to background color
+      // if not, redirect
+    }
+  }
+
+  clearInt(intervalID) {
+    clearInterval(intervalID);
+  }
+
+  clearCanvas() {
+    this.ctx.clearRect(0, 0, this.WIDTH, this.HEIGHT);
+    this.lasers = [];
+  }
+
+  
 }
 
 export default CanvasView;

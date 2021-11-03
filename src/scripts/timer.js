@@ -1,8 +1,9 @@
 class Timer {
-  constructor(numSeconds, container) {
+  constructor(numSeconds, container, canvasInterval) {
     this.initialTime = numSeconds;
     this.secondsLeft = numSeconds;
     this.container = container;
+    this.canvasInterval = canvasInterval;
     this.running = false;
     this.over = false;
   }
@@ -15,6 +16,7 @@ class Timer {
       if (this.secondsLeft === 0) {
         this.render();
         this.over = true;
+        clearInterval(this.canvasInterval);
       } else if (this.secondsLeft < 0) {
         this.renderStatsButton();
         clearInterval(interval);
