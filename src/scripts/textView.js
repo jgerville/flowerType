@@ -68,7 +68,7 @@ class TextView {
       if (this._ismatch(key)) {
         this._startTimer();
         if (key === ' ') {
-          this.canvasView.addLaser();
+          this.canvasView.addFlower();
         }
         this._correctChar();
       } else if (this._isIgnoredKey(key)) {
