@@ -1,6 +1,5 @@
 import Start from "./start";
 import TextView from "./textView";
-// import {test} from "../../app";
 
 class PageView {
   constructor() {
@@ -25,11 +24,12 @@ class PageView {
     e.preventDefault();
     this.start.button.removeEventListener('click', this.boundStartHandler);
     this.start.button.innerText = 'Generating, please wait...';
-    // this.start.button.disabled = true;
+    this.start.button.disabled = true;
     await this.start.generateText();
 
     PageView._addHidden(this.start.container);
-    PageView._addHidden(document.querySelector('.bottom-half'));
+    PageView._addHidden(document.querySelector('.instructions'));
+    PageView._removeHidden(document.getElementById('graphics-canvas'))
     this._renderTextView(this.start.textGenerated);
   }
 

@@ -4,8 +4,8 @@ let pageView = new PageView();
 
 const canvasEl = document.getElementById("graphics-canvas");
 const canvasParent = document.querySelector(".bottom-half");
-canvasEl.width = canvasParent.offsetWidth * 0.99;
-canvasEl.height = canvasParent.offsetHeight * 1.1;
+canvasEl.width = canvasParent.offsetWidth - 4;
+canvasEl.height = canvasParent.offsetHeight - 4;
 const ctx = canvasEl.getContext("2d");
 window.ctx = ctx;
 

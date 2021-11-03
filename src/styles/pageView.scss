@@ -39,7 +39,8 @@ form {
 }
 
 .page-container {
-  margin: 10% 3em 0 3em;
+  margin: 3% 3em 0 3em;
+  height: 800px;
   // display: flex;
   // flex-direction: column;
   // justify-content: center;
@@ -58,8 +59,10 @@ form {
 }
 
 .bottom-half {
+  display: block;
   position: relative;
-  margin-top: 10%;
+  height: 60%;
+  margin-top: 2%;
   border: 2px solid v.$border;
   text-align: center;
   font-size: 2rem;
@@ -88,6 +91,6 @@ form {
 // change max-height by 3 rem for one line of text
 .text-container {
   overflow: hidden;
-  max-height: 18rem;
+  max-height: 9rem;
   padding: 0 1em 1em 1em;
 }

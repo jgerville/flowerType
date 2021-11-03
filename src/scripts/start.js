@@ -1,28 +1,4 @@
 import deepai from 'deepai';
-// import fetch from 'node-fetch';
-
-
-
-  // deepai.setApiKey(res)
-  // debugger;
-
-    // debugger
-
-// async function getAPI() {
-//   let response = await fetch('/api');
-//   response.json()
-//     .then(data => {
-//       debugger;
-//       console.log(data);
-//     });
-// }
-
-// getAPI();
-
-
-
-// const key = require()
-
 
 class Start {
   constructor() {
@@ -51,14 +27,10 @@ class Start {
     const input = document.getElementById('sentence-input');
     const value = input.value;
     input.value = '';
+    
     let response = await fetch('/api')
     let response2 = await response.json();
     let key = response2.deepaiKEY;
-    
-      // .then(res => res.json())
-      // .then((res) => {
-      //   key = res.deepaiKEY;
-      // })
     deepai.setApiKey(key);
     const resp = await deepai.callStandardApi("text-generator", {
             text: value,

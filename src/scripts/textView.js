@@ -124,7 +124,7 @@ class TextView {
     const wordIdx = currentEle.dataset.word;
 
     
-    if (wordIdx - this.numWordsShifted > 24) {
+    if (wordIdx - this.numWordsShifted > 16) {
       const eleHoldingSpans = this.container.firstChild;
       let idxStart = parseInt(eleHoldingSpans.firstChild.dataset.word);
       let idxEnd = idxStart + 8;
