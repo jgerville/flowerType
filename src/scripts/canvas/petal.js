@@ -6,12 +6,13 @@ class Petal {
 
     this.color = color;
     this.color2 = color2;
-    this.strokeColor = strokeColor
+    this.strokeColor = strokeColor;
+
     this.initialPetalSteps = this.getRandomPetalSize();
-    this.petalStepsLeft = this.initialPetalSteps
+    this.petalStepsLeft = this.initialPetalSteps;
     this.petalNotComplete = true;
 
-    this.radius = 1.6//this.getRandomRadius();
+    this.radius = this.getRandomRadius();
 
     this.degree = 0;
     this.degreeChange = this.getRandomDegreeChange();

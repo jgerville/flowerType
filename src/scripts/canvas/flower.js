@@ -16,7 +16,6 @@ class Flower {
     this.pos = [x, y];
 
     this.radius = 0.5;
-    // this.pos = Laser.randomPosition();
     this.vel = Flower.randomVelocity();
     this.stemColor = this._chooseStemColor();
     this.petalColor = Flower.randomColor();
