@@ -45,6 +45,8 @@ class TextStats {
 
     // update the counts hash
     const upcaseKey = missedKey.toUpperCase();
+    const upcaseTypedKey = typedKey.toUpperCase();
+
     if (this.missedCharCounts[upcaseKey]) {
       this.missedCharCounts[upcaseKey] ++;
     } else {
@@ -53,14 +55,14 @@ class TextStats {
 
     // update the rightCharWrongChar hash
     if (this.rightCharWrongChar[upcaseKey]) {
-      if (this.rightCharWrongChar[upcaseKey][typedKey]) {
-        this.rightCharWrongChar[upcaseKey][typedKey] ++;
+      if (this.rightCharWrongChar[upcaseKey][upcaseTypedKey]) {
+        this.rightCharWrongChar[upcaseKey][upcaseTypedKey] ++;
       } else {
-        this.rightCharWrongChar[upcaseKey][typedKey] = 1
+        this.rightCharWrongChar[upcaseKey][upcaseTypedKey] = 1
       }
     } else {
       this.rightCharWrongChar[upcaseKey] = {};
-      this.rightCharWrongChar[upcaseKey][typedKey] = 1;
+      this.rightCharWrongChar[upcaseKey][upcaseTypedKey] = 1;
     }
   }
 
