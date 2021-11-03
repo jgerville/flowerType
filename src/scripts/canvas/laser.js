@@ -17,6 +17,7 @@ class Laser {
   draw() {
     this.ctx.beginPath();
     this.ctx.arc(this.pos[0], this.pos[1], this.radius, 0, 2 * Math.PI);
+    this.ctx.closePath();
     this.ctx.fillStyle = this.color;
     this.ctx.fill();
   }
@@ -55,6 +56,8 @@ class Laser {
   }
 
   static randomColor() {
+    // Credit: Chris Coyier on CSS Tricks
+    // https://css-tricks.com/snippets/javascript/random-hex-color/
     return `#${Math.floor(Math.random()*16777215).toString(16)}`;
   }
 }

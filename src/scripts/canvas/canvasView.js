@@ -1,3 +1,4 @@
+import Flower from "./flower";
 import Laser from "./laser";
 
 class CanvasView {

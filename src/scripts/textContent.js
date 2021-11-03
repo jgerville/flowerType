@@ -19,6 +19,7 @@ class TextContent {
   makeTypeable(body) {
     console.log(body)
     body = body.replace(/…/g, "...");
+    body = body.replace(/–/g, "-");
     return body.replace(/\s{2,}/g, " ");
   }
 
