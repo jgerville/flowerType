@@ -19,6 +19,15 @@ class CanvasView {
     return interval;
   }
 
+  draw() {
+    for (const laser of this.lasers) {
+      laser.draw();
+    }
+    for (const flower of this.flowers) {
+      flower.draw();
+    }
+  }
+  
   // once mode selection exists, refactor to addObject
   addLaser() {
     this.lasers.push(new Laser(ctx, this.WIDTH, this.HEIGHT))
@@ -28,14 +37,6 @@ class CanvasView {
     this.flowers.push(new Flower(ctx, this.WIDTH, this.HEIGHT))
   }
 
-  draw() {
-    for (const laser of this.lasers) {
-      laser.draw();
-    }
-    for (const flower of this.flowers) {
-      flower.draw();
-    }
-  }
 
   moveLasers() {
     for (const laser of this.lasers) {

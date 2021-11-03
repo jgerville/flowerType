@@ -1,3 +1,5 @@
+import Petal from "./petal";
+
 class Flower {
   constructor(ctx, width, height) {
     this.ctx = ctx;
@@ -6,7 +8,7 @@ class Flower {
     this.STEMCOLORS = ['#9D9D44', '#5F923E', '#008449', '#00725E'];
 
     this.stemStepsLeft = this._getStemLength();
-    this.stemComplete = false;
+    this.stemNotComplete = true;
     this.petals = [];
 
     const x = Math.random() * this.WIDTH;
@@ -21,8 +23,15 @@ class Flower {
   }
 
   draw() {
-    if (!this.stemComplete) {
+    if (this.stemNotComplete) {
       this.drawStem();
+    } else {
+      if (this.petals.length === 0) {
+        this.petals.push(new Petal(this.ctx, this.pos, this.petalColor));
+      }
+      if (this.petals[0].petalNotComplete) {
+        this.petals[0].draw();
+      }
     }
   }
 
@@ -34,7 +43,7 @@ class Flower {
       this.ctx.fill();
       this.stemStepsLeft --;
     } else {
-      this.stemComplete = true;
+      this.stemNotComplete = false;
       console.log('finished drawing stem')
     }
   }
@@ -42,6 +51,10 @@ class Flower {
   move() {
     this.pos[0] += this.vel[0];
     this.pos[1] += this.vel[1];
+
+    for (const petal of this.petals) {
+      petal.move();
+    }
   }
 
 
