@@ -18,7 +18,6 @@ class PageView {
     this.addRestartButtonListener();
   }
 
-
   addStartButtonListener() {
     this.start.button.addEventListener('click', this.boundStartHandler);
   }
