@@ -1,11 +1,15 @@
 class Laser {
   constructor(ctx, width, height) {
     this.ctx = ctx;
-    this.CANVASWIDTH = width;
+    this.cvw = width;
     this.CANVASHEIGHT = height;
 
-    this.radius = 3;
-    this.pos = Laser.randomPosition();
+    const x = Math.random() * this.cvw;
+    const y = Math.random() * this.CANVASHEIGHT;
+    this.pos = [x, y];
+
+    this.radius = 1;
+    // this.pos = Laser.randomPosition();
     this.vel = Laser.randomVelocity();
     this.color = Laser.randomColor();
   }
@@ -28,11 +32,7 @@ class Laser {
     return (this.radius + otherLaser.radius) > dist;
   }
 
-  static randomPosition() {
-    const x = Math.random() * this.CANVASWIDTH;
-    const y = Math.random() * this.CANVASHEIGHT;
-    return [x, y];
-  }
+
 
   static randomVelocity() {
     const degree = 2 * Math.PI * Math.random();
@@ -40,6 +40,8 @@ class Laser {
   }
 
   static randomColor() {
-    return Math.floor(Math.random()*16777215).toString(16);
+    return `#${Math.floor(Math.random()*16777215).toString(16)}`;
   }
 }
+
+export default Laser;
