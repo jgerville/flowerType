@@ -44,16 +44,19 @@ class Flower {
       this.stemStepsLeft --;
     } else {
       this.stemNotComplete = false;
-      console.log('finished drawing stem')
     }
   }
 
   move() {
-    this.pos[0] += this.vel[0];
-    this.pos[1] += this.vel[1];
+    if (this.stemNotComplete) {
+      this.pos[0] += this.vel[0];
+      this.pos[1] += this.vel[1];
+    }
 
-    for (const petal of this.petals) {
-      petal.move();
+    if (this.petals.length > 0) {
+      if (this.petals[0].petalNotComplete) {
+        this.petals[0].move();
+      }
     }
   }
 
@@ -63,13 +66,12 @@ class Flower {
   }
 
   _getStemLength() {
-    return 20 + Math.floor(Math.random() * 50);
+    return 20 + Math.floor(Math.random() * 200);
   }
 
 
   static randomVelocity() {
     const degree = ((1/3) * Math.PI * Math.random()) + ((11/6) * Math.PI);
-    console.log(degree);
     return [Math.sin(degree), -Math.cos(degree)];
   }
 
