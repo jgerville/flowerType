@@ -1,7 +1,6 @@
 import CanvasView from "./scripts/canvas/canvasView";
 import PageView from "./scripts/pageView";
 
-let pageView = new PageView();
 
 const canvasEl = document.getElementById("graphics-canvas");
 const canvasParent = document.querySelector(".bottom-half");
@@ -12,11 +11,16 @@ canvasEl.height = ctxY;
 const ctx = canvasEl.getContext("2d");
 window.ctx = ctx;
 
-let canvasview = new CanvasView(ctx, ctxX, ctxY);
+let canvasView = new CanvasView(ctx, ctxX, ctxY);
+let pageView = new PageView(canvasView);
 
 
 // this is for testing stuff in the console
 window.pv = pageView;
 window.start = pageView.start
 
-window.canv = canvasview;
+window.canv = canvasView;
+
+function setUpCanvas() {
+
+}

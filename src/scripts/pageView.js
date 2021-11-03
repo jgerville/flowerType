@@ -2,10 +2,11 @@ import Start from "./start";
 import TextView from "./textView";
 
 class PageView {
-  constructor() {
+  constructor(canvasView) {
     this.start = new Start
     this.textView;
     this.textStats;
+    this.canvasView = canvasView;
 
     this.boundStartHandler = this.startButtonHandler.bind(this);
     this.boundStatsHandler = this.statsButtonHandler.bind(this);
@@ -44,7 +45,8 @@ class PageView {
 
     const timerContainer = document.querySelector('.timer-container');
     timerContainer.classList.add('ib')
-    this.textView = new TextView(text);
+    this.textView = new TextView(text, this.canvasView);
+    this.canvasView.start()
     this.textStats = this.textView.textStats;
   }
 
