@@ -30,12 +30,12 @@ class TextStats {
     const p3 = document.createElement('p');
     p3.append(`Wrong keys: ${this.numWrongKeydowns}`);
 
-    const ul = this._createRightCharWrongCharElement();
+    // const ul = this._createRightCharWrongCharElement();
     
     div.appendChild(p1);
     div.appendChild(p2);
     div.appendChild(p3);
-    div.appendChild(ul);
+    // div.appendChild(ul);
     container.appendChild(div);
   }
 
