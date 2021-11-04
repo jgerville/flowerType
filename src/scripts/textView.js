@@ -15,7 +15,7 @@ class TextView {
     this.container = Util.q('.text-container');
     this.timerContainer = Util.q('.timer-container');
     
-    this.timer = new Timer(60, this.timerContainer, canvasInterval, this.music);
+    this.timer = new Timer(30, this.timerContainer, canvasInterval, this.music);
     this.textStats = new TextStats(this.timer.initialTime);
 
     this.boundTypingListener = this._typingListener.bind(this);
