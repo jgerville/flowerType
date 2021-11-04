@@ -100,6 +100,9 @@ class PageView {
 
       this.music.mute();
       this.music = 0;
+      document.getElementById('mute').classList.add('hidden');
+      document.getElementById('unmute').classList.add('hidden');
+
       this.textView.timer.renderRestartButton();
     }
   }

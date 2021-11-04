@@ -28,8 +28,10 @@ class Music {
   }
 
   slower() {
-    if (this.song.playbackRate > 0.5) {
-      this.song.playbackRate -= 0.1;
+    if (this.started) {
+      if (this.song.playbackRate > 0.5) {
+        this.song.playbackRate -= 0.1;
+      }
     }
   }
 }

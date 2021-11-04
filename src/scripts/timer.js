@@ -1,9 +1,10 @@
 class Timer {
-  constructor(numSeconds, container, canvasInterval) {
+  constructor(numSeconds, container, canvasInterval, music) {
     this.initialTime = numSeconds;
     this.secondsLeft = numSeconds;
     this.container = container;
     this.canvasInterval = canvasInterval;
+    this.music = music;
     this.running = false;
     this.over = false;
   }
@@ -18,6 +19,7 @@ class Timer {
         this.over = true;
         clearInterval(this.canvasInterval);
       } else if (this.secondsLeft < 0) {
+        this.music.mute();
         this.renderStatsButton();
         clearInterval(interval);
       } else {

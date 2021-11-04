@@ -14,7 +14,7 @@ class TextView {
     this.container = document.querySelector('.text-container');
     this.timerContainer = document.querySelector('.timer-container');
     
-    this.timer = new Timer(60, this.timerContainer, canvasInterval);
+    this.timer = new Timer(60, this.timerContainer, canvasInterval, this.music);
     this.textStats = new TextStats(this.timer.initialTime);
 
     this.boundTypingListener = this._typingListener.bind(this);
