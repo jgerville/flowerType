@@ -52,6 +52,7 @@ const config = {
     }
   },
   plugins: [new MiniCssExtractPlugin()],
+  // devtool: 'source-map',
 };
 
 module.exports = (env, argv) => {
