@@ -38,7 +38,9 @@ class PageView {
     Util.getEleRemoveHidden('#graphics-canvas');
 
     if (this.start.special) {
-      this.music = new Music('special.mp3')
+      this.music = new Music('special.mp3', 'egg')
+    } else if (this.start.test) {
+      this.music = new Music('itsbab-Zachariah-Hickman.mp3', 'test');
     } else {
       this.music = new Music('itsbab-Zachariah-Hickman.mp3');
     }

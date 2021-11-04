@@ -1,7 +1,8 @@
 class Music {
-  constructor(songFile) {
+  constructor(songFile, egg) {
     this.song = new Audio(songFile)
     this.started = false;
+    this.easter = egg
   }
 
   start() {

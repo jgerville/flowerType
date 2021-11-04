@@ -15,7 +15,14 @@ class TextView {
     this.container = Util.q('.text-container');
     this.timerContainer = Util.q('.timer-container');
     
-    this.timer = new Timer(60, this.timerContainer, canvasInterval, this.music);
+    let allottedTime = 60;
+    if (this.music.easter === 'egg') {
+      allottedTime = 120;
+    } else if (this.music.easter === 'test') {
+      allottedTime = 30;
+    }
+
+    this.timer = new Timer(allottedTime, this.timerContainer, canvasInterval, this.music);
     this.textStats = new TextStats(this.timer.initialTime);
 
     this.boundTypingListener = this._typingListener.bind(this);
