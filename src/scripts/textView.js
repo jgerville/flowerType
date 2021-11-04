@@ -1,6 +1,7 @@
 import TextContent from "./textContent";
 import TextStats from "./textStats";
 import Timer from "./timer";
+import Util from "./utilities";
 
 class TextView {
   constructor(textContent, canvasView, canvasInterval, music) {
@@ -11,8 +12,8 @@ class TextView {
     this.canvasInterval = canvasInterval;
     this.music = music;
 
-    this.container = document.querySelector('.text-container');
-    this.timerContainer = document.querySelector('.timer-container');
+    this.container = Util.q('.text-container');
+    this.timerContainer = Util.q('.timer-container');
     
     this.timer = new Timer(60, this.timerContainer, canvasInterval, this.music);
     this.textStats = new TextStats(this.timer.initialTime);
@@ -69,7 +70,7 @@ class TextView {
       if (this._ismatch(key)) {
         this._startTimer();
         this.music.start();
-        document.getElementById('unmute').classList.remove('hidden');
+        Util.getEleRemoveHidden('#unmute')
         this._correctChar();
         if (key === ' ') {
           this.canvasView.addFlower();

@@ -18,7 +18,11 @@ class TextStats {
     const div = document.createElement('div');
 
     const p1 = document.createElement('p');
-    p1.append(`You typed ${this.numWordsTyped} words in ${numMins} minutes!`);
+    if (numMins === 1) {
+      p1.append(`You typed ${this.numWordsTyped} words in ${numMins} minute!`);
+    } else {
+      p1.append(`You typed ${this.numWordsTyped} words in ${numMins} minutes!`);
+    }
 
     const p2 = document.createElement('p');
     p2.append(`Typing speed: ${wpm} words/minute`);

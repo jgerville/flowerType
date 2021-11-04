@@ -1,13 +1,14 @@
 import deepai from 'deepai';
+import Util from './utilities';
 
 class Start {
   constructor() {
-    this.container = document.querySelector('.start-container')
+    this.container = Util.q('.start-container')
     this.textGenerated;
 
     this.render();
-    this.button = document.getElementById('start-button')
-    this.input = document.getElementById('sentence-input')
+    this.button = Util.q('#start-button')
+    this.input = Util.q('#sentence-input')
   }
 
   render() {
@@ -24,7 +25,7 @@ class Start {
   }
 
   async generateText() {
-    const input = document.getElementById('sentence-input');
+    const input = Util.q('#sentence-input');
     const value = input.value;
     input.value = '';
     
