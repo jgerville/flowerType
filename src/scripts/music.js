@@ -10,7 +10,7 @@ class Music {
       this.song.play();
       this.started = true;
       this.song.loop = true;
-      this.song.playbackRate = 0.4;
+      this.song.playbackRate = 1;
     }
   }
 

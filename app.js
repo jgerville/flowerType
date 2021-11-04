@@ -14,6 +14,11 @@ app.get('/api', async (req, res) => {
   res.send(key);
 })
 
+app.get('/special', async (req, res) => {
+  const text = { text: process.env.TEXT}
+  res.send(text);
+})
+
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
   console.log(`Now listening at localhost:${PORT}`);
