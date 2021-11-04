@@ -30,11 +30,11 @@ class CanvasView {
   
   // once mode selection exists, refactor to addObject
   addLaser() {
-    this.lasers.push(new Laser(ctx, this.WIDTH, this.HEIGHT))
+    this.lasers.push(new Laser(this.ctx, this.WIDTH, this.HEIGHT))
   }
 
   addFlower() {
-    this.flowers.push(new Flower(ctx, this.WIDTH, this.HEIGHT))
+    this.flowers.push(new Flower(this.ctx, this.WIDTH, this.HEIGHT))
   }
 
 
