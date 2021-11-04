@@ -35,7 +35,7 @@ class CanvasView {
     if (this.mode === 'lasers') {
       this.addLaser();
     } else if (this.mode === 'special') {
-      this.addThing();
+      // this.addThing();
     } else {
       this.addFlower();
     }

@@ -107,7 +107,10 @@ class TextView {
     const timeElapsed = this.timer.initialTime - this.timer.secondsLeft;
     const wordsTyped = this.textStats.numWordsTyped;
 
-    if (wordsTyped / timeElapsed > 1.05) {
+    console.log(timeElapsed);
+    console.log(wordsTyped);
+
+    if (wordsTyped / timeElapsed > 1) {
       this.music.faster();
     } else {
       this.music.slower();
