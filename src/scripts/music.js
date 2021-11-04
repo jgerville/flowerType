@@ -17,6 +17,10 @@ class Music {
     this.song.pause();
   }
 
+  unmute() {
+    this.song.play();
+  }
+
   faster() {
     if (this.song.playbackRate < 1.5) {
       this.song.playbackRate += 0.1;

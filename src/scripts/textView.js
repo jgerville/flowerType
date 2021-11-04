@@ -14,7 +14,7 @@ class TextView {
     this.container = document.querySelector('.text-container');
     this.timerContainer = document.querySelector('.timer-container');
     
-    this.timer = new Timer(30, this.timerContainer, canvasInterval);
+    this.timer = new Timer(60, this.timerContainer, canvasInterval);
     this.textStats = new TextStats(this.timer.initialTime);
 
     this.boundTypingListener = this._typingListener.bind(this);
@@ -69,6 +69,7 @@ class TextView {
       if (this._ismatch(key)) {
         this._startTimer();
         this.music.start();
+        document.getElementById('unmute').classList.remove('hidden');
         this._correctChar();
         if (key === ' ') {
           this.canvasView.addFlower();
@@ -98,7 +99,7 @@ class TextView {
     const timeElapsed = this.timer.initialTime - this.timer.secondsLeft;
     const wordsTyped = this.textStats.numWordsTyped;
 
-    if (wordsTyped / timeElapsed > 1.25) {
+    if (wordsTyped / timeElapsed > 1.05) {
       this.music.faster();
     } else {
       this.music.slower();

@@ -58,6 +58,7 @@ class CanvasView {
   clearCanvas() {
     this.ctx.clearRect(0, 0, this.WIDTH, this.HEIGHT);
     this.lasers = [];
+    this.flowers = [];
   }
 
   

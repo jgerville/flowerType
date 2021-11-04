@@ -4,10 +4,17 @@ import PageView from "./scripts/pageView";
 
 const canvasEl = document.getElementById("graphics-canvas");
 const canvasParent = document.querySelector(".bottom-half");
-const ctxX = canvasParent.offsetWidth - 4;
-const ctxY = canvasParent.offsetHeight - 4;
+const rect = canvasParent.getBoundingClientRect();
+
+const ctxX = rect.width - 4;
+const ctxY = rect.height - 4;
+
 canvasEl.width = ctxX;
 canvasEl.height = ctxY;
+
+console.log(rect.width)
+console.log(rect.height)
+
 const ctx = canvasEl.getContext("2d");
 window.ctx = ctx;
 

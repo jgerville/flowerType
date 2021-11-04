@@ -18,6 +18,7 @@ class PageView {
     this.addStartButtonListener();
     this.addStatsButtonListener();
     this.addRestartButtonListener();
+    this.addMuteListeners();
   }
 
   addStartButtonListener() {
@@ -27,17 +28,35 @@ class PageView {
   async startButtonHandler (e) {
     e.preventDefault();
     this.start.button.removeEventListener('click', this.boundStartHandler);
+    document.getElementById('sentence-input').classList.add('hidden')
     this.start.button.innerText = 'Generating, please wait...';
     this.start.button.disabled = true;
     await this.start.generateText();
 
-    PageView._addHidden(this.start.container);
     PageView._addHidden(document.querySelector('.instructions'));
     PageView._removeHidden(document.getElementById('graphics-canvas'));
 
-    this.music = new Music('Skaler-Mike-Relm.mp3');
+    // kind of hacky, delete if canvas sizing fixed
+    // document.querySelector('.bottom-half').classList.add('borderless')
+
+    this.music = new Music('itsbab-Zachariah-Hickman.mp3');
     
     this._renderTextView(this.start.textGenerated);
+  }
+
+  addMuteListeners() {
+    const container = document.querySelector('.top-half');
+    container.addEventListener('click', (e) => {
+      if (e.target.classList.contains('fa-volume-up')) {
+        this.music.mute();
+        document.getElementById('unmute').classList.add('hidden');
+        document.getElementById('mute').classList.remove('hidden');
+      } else if (e.target.classList.contains('fa-volume-mute')) {
+        this.music.unmute();
+        document.getElementById('mute').classList.add('hidden');
+        document.getElementById('unmute').classList.remove('hidden');
+      }
+    })
   }
 
   _renderTextView(text) {
@@ -48,6 +67,9 @@ class PageView {
       const child = topHalfChildren[i];
       child.classList.remove('hidden');
     }
+
+    PageView._addHidden(document.getElementById('start-container'));
+
 
     const timerContainer = document.querySelector('.timer-container');
     timerContainer.classList.add('ib')
@@ -72,6 +94,10 @@ class PageView {
       textContainer.classList.add('hidden');
       this.textStats.render(statsContainer);
       statsContainer.classList.remove('hidden');
+
+      // kind of hacky, delete if canvas sizing fixed
+      document.querySelector('.bottom-half').classList.remove('borderless')
+
       this.music.mute();
       this.music = 0;
       this.textView.timer.renderRestartButton();

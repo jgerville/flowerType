@@ -18,9 +18,14 @@ class TextContent {
 
   makeTypeable(body) {
     console.log(body)
-    body = body.replace(/…/g, "...");
-    body = body.replace(/–/g, "-");
-    return body.replace(/\s{2,}/g, " ");
+    let multiplied = body;
+    for (let i = 0; i < 3; i++) {
+      multiplied = multiplied + " " + body;
+    }
+    console.log(multiplied);
+    multiplied = multiplied.replace(/…/g, "...");
+    multiplied = multiplied.replace(/–/g, "-");
+    return multiplied.replace(/\s{2,}/g, " ");
   }
 
   isMatch(key) {
