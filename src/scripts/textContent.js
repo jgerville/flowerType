@@ -18,6 +18,7 @@ class TextContent {
       multiplied = multiplied + " " + body;
     }
     multiplied = multiplied.replace(/…/g, "...");
+    multiplied = multiplied.replace(/é/g, "e");
     multiplied = multiplied.replace(/–/g, "-");
     return multiplied.replace(/\s{2,}/g, " ");
   }
