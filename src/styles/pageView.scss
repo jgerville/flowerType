@@ -32,6 +32,7 @@ form {
 
 #graphics-canvas {
   background-color: v.$off-white;
+  position:relative;
 }
 
 .hidden {
@@ -50,9 +51,7 @@ form {
 .top-half {
   border: 2px groove v.$border;
   text-align: center;
-}
 
-.top-half {
   .text-container {
     text-align: justify;
   }
@@ -67,9 +66,6 @@ form {
   text-align: center;
   font-size: 2rem;
   // padding: 0 0.5em 0.5em 0.5em;
-}
-
-.bottom-half {
   > h2 {
     display: inline-block;
     margin: 0 auto;
@@ -83,10 +79,8 @@ form {
   p {
     text-align: justify;
   }
-   canvas {
-    //  margin-left: -0.55em;
-   }
 }
+
 
 // change max-height by 3 rem for one line of text
 .text-container {

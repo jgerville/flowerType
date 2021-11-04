@@ -1,3 +1,4 @@
+import Music from "./music";
 import Start from "./start";
 import TextView from "./textView";
 
@@ -8,6 +9,7 @@ class PageView {
     this.textStats;
     this.canvasView = canvasView;
     this.canvasInterval;
+    this.music;
 
     this.boundStartHandler = this.startButtonHandler.bind(this);
     this.boundStatsHandler = this.statsButtonHandler.bind(this);
@@ -31,7 +33,9 @@ class PageView {
 
     PageView._addHidden(this.start.container);
     PageView._addHidden(document.querySelector('.instructions'));
-    PageView._removeHidden(document.getElementById('graphics-canvas'))
+    PageView._removeHidden(document.getElementById('graphics-canvas'));
+
+    this.music = new Music('Skaler-Mike-Relm.mp3');
     
     this._renderTextView(this.start.textGenerated);
   }
@@ -48,7 +52,7 @@ class PageView {
     const timerContainer = document.querySelector('.timer-container');
     timerContainer.classList.add('ib')
     this.canvasInterval = this.canvasView.start()
-    this.textView = new TextView(text, this.canvasView, this.canvasInterval);
+    this.textView = new TextView(text, this.canvasView, this.canvasInterval, this.music);
     this.textStats = this.textView.textStats;
   }
 
@@ -68,6 +72,8 @@ class PageView {
       textContainer.classList.add('hidden');
       this.textStats.render(statsContainer);
       statsContainer.classList.remove('hidden');
+      this.music.mute();
+      this.music = 0;
       this.textView.timer.renderRestartButton();
     }
   }

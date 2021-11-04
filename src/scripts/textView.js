@@ -3,12 +3,13 @@ import TextStats from "./textStats";
 import Timer from "./timer";
 
 class TextView {
-  constructor(textContent, canvasView, canvasInterval) {
+  constructor(textContent, canvasView, canvasInterval, music) {
     this.CATIPSUM = `Cat ipsum dolor sit amet, put butt in owner's face poop on the floor, break a planter, sprint, eat own hair, vomit hair, hiss, chirp at birds, eat a squirrel, hide from fireworks, lick toe beans, attack christmas tree floof tum, tickle bum, jellybean footies curly toes destroy couch as revenge. Catching very fast laser pointer grass smells good cat slap dog in face. Ooooh feather moving feather! cereal boxes make for five star accommodation . Cuddle no cuddle cuddle love scratch scratch kitty pounce, trip, faceplant you didn't see that no you didn't definitely didn't lick, lick, lick, and preen away the embarrassment slap owner's face at 5am until human fills food dish refuse to come home when humans are going to bed; stay out all night then yowl like i am dying at 4am but scratch so kitty kitty pussy cat doll. Intently stare at the same spot kick up litter for cat gets stuck in tree firefighters try to get cat down firefighters get stuck in tree cat eats firefighters' slippers this is the day . Pet my belly, you know you want to; seize the hand and shred it! knock over christmas tree. And sometimes switches in french and say 'miaou' just because well why not so you're just gonna scroll by without saying meowdy?`
     this.IGNOREDKEYS = ["Tab", "Backspace", "Delete", "Shift", "Escape", "Alt", "CapsLock", "Control", "Fn", "FnLock", "Meta", "NumLock", "ScrollLock", "ArrowDown", "ArrowUp", "ArrowLeft", "ArrowRight", "End", "Home", "PageDown", "PageUp"]
     this.textContent = new TextContent(textContent);
     this.canvasView = canvasView;
     this.canvasInterval = canvasInterval;
+    this.music = music;
 
     this.container = document.querySelector('.text-container');
     this.timerContainer = document.querySelector('.timer-container');
@@ -67,14 +68,17 @@ class TextView {
     } else {
       if (this._ismatch(key)) {
         this._startTimer();
+        this.music.start();
+        this._correctChar();
         if (key === ' ') {
           this.canvasView.addFlower();
+          this._adjustMusic();
         }
-        this._correctChar();
       } else if (this._isIgnoredKey(key)) {
         console.log(`${key} will not be counted as incorrect because it's on the ignore list.`)
       } else {
         this._wrongChar(key);
+        this.music.slower();
       }
     }
   }
@@ -88,6 +92,17 @@ class TextView {
     this.textContent.nextChar();
     this._colorCurrentElement();
     this._shiftWords();
+  }
+
+  _adjustMusic() {
+    const timeElapsed = this.timer.initialTime - this.timer.secondsLeft;
+    const wordsTyped = this.textStats.numWordsTyped;
+
+    if (wordsTyped / timeElapsed > 1.25) {
+      this.music.faster();
+    } else {
+      this.music.slower();
+    }
   }
 
   _startTimer() {

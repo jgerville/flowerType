@@ -20,12 +20,12 @@ window.pv = pageView;
 window.start = pageView.start
 
 window.canv = canvasView;
-window.af = canvasView.addFlower();
+// window.af = canvasView.addFlower();
 // canvasView.addFlower();
 // canvasView.addFlower();
 // canvasView.addFlower();
-window.start = canvasView.start();
+// window.start = canvasView.start();
 
-function setUpCanvas() {
+// function setUpCanvas() {
 
-}
+// }

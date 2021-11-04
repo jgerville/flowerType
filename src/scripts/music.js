@@ -1,11 +1,16 @@
 class Music {
   constructor(songFile) {
     this.song = new Audio(songFile)
+    this.started = false;
   }
 
   start() {
-    this.song.play();
-    this.song.loop = true;
+    if (!this.started){
+      this.song.play();
+      this.started = true;
+      this.song.loop = true;
+      this.song.playbackRate = 0.4;
+    }
   }
 
   mute() {
