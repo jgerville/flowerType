@@ -1,17 +1,26 @@
+# Live Link
+
+The standard timer is 60 seconds long.
+To get a 30 second timer, prefix the input sentence with "Test: " and don't forget the space after the colon!
+There is a secret mode that lasts 120 seconds, but I don't want to say how to access it.
+
+[Flower Type](https://flower-type.herokuapp.com)
+
 # Background
 
-There are a lot of typing test websites out there. Although most of them offer the same functionality, many of these sites are cluttered with ads or lock features behind premium accounts. TypePrax aims to maintain a **simple and clean UI** that lets any user analyze their typing abilities without bothering them with ads or random links scattered around the page.
+There are a lot of typing test websites out there. Although most of them offer the same functionality, many of these sites are cluttered with ads or lock features behind premium accounts. TypePrax aims to maintain a **simple and clean UI** that lets any user analyze their typing abilities without bothering them with ads or random links scattered around the page. It also aims to make it fun by displaying pleasing graphics and speeding up and slowing down music based on performance.
 
 
 # Functionality and MVPs
 
-In TypePrax, users will be able to:
+In TypePrax, users are able to:
 
  - Click a button to generate text to be typed
  - Start a countdown by beginning to type
- - See keys on a virtual keyboard graphic light up as they type
- - Press a button to hide the keyboard graphics while typing
+ - Feel rewarded by canvas graphics that grow with every correct word
+ - Press a button to mute or unmute music while it is playing
  - Review data from their typing session after it ends
+
 
 In addition, this project will include:
 
