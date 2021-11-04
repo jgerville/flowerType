@@ -80,7 +80,7 @@ class TextView {
         Util.getEleRemoveHidden('#unmute')
         this._correctChar();
         if (key === ' ') {
-          this.canvasView.addFlower();
+          this.canvasView.addObject();
           this._adjustMusic();
         }
       } else if (this._isIgnoredKey(key)) {

@@ -39,6 +39,7 @@ class PageView {
 
     if (this.start.special) {
       this.music = new Music('special.mp3', 'egg')
+      this.canvasView.mode = 'special'
     } else if (this.start.test) {
       this.music = new Music('itsbab-Zachariah-Hickman.mp3', 'test');
     } else {

@@ -7,8 +7,11 @@ class CanvasView {
     this.ctx = ctx
     this.WIDTH = width;
     this.HEIGHT = height;
+    this.mode;
+
     this.lasers = [];
     this.flowers = [];
+    this.things = [];
   }
 
   start() {
@@ -25,6 +28,16 @@ class CanvasView {
     }
     for (const flower of this.flowers) {
       flower.draw();
+    }
+  }
+
+  addObject() {
+    if (this.mode === 'lasers') {
+      this.addLaser();
+    } else if (this.mode === 'special') {
+      this.addThing();
+    } else {
+      this.addFlower();
     }
   }
   
