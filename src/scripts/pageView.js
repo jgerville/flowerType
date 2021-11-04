@@ -36,9 +36,6 @@ class PageView {
     PageView._addHidden(document.querySelector('.instructions'));
     PageView._removeHidden(document.getElementById('graphics-canvas'));
 
-    // kind of hacky, delete if canvas sizing fixed
-    // document.querySelector('.bottom-half').classList.add('borderless')
-
     this.music = new Music('itsbab-Zachariah-Hickman.mp3');
     
     this._renderTextView(this.start.textGenerated);
@@ -95,9 +92,6 @@ class PageView {
       this.textStats.render(statsContainer);
       statsContainer.classList.remove('hidden');
 
-      // kind of hacky, delete if canvas sizing fixed
-      document.querySelector('.bottom-half').classList.remove('borderless')
-
       this.music.mute();
       this.music = 0;
       document.getElementById('mute').classList.add('hidden');
@@ -143,7 +137,6 @@ class PageView {
     PageView._removeChildren(statsContainer);
     PageView._addHidden(statsContainer);
 
-    // might want to change 102-103 depending on more content
     const instructionsContainer = document.querySelector('.instructions');
     PageView._removeHidden(instructionsContainer);
 

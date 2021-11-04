@@ -12,27 +12,7 @@ const ctxY = rect.height - 4;
 canvasEl.width = ctxX;
 canvasEl.height = ctxY;
 
-console.log(rect.width)
-console.log(rect.height)
-
 const ctx = canvasEl.getContext("2d");
-window.ctx = ctx;
 
 let canvasView = new CanvasView(ctx, ctxX, ctxY);
-let pageView = new PageView(canvasView);
-
-
-// this is for testing stuff in the console
-window.pv = pageView;
-window.start = pageView.start
-
-window.canv = canvasView;
-// window.af = canvasView.addFlower();
-// canvasView.addFlower();
-// canvasView.addFlower();
-// canvasView.addFlower();
-// window.start = canvasView.start();
-
-// function setUpCanvas() {
-
-// }
+new PageView(canvasView);

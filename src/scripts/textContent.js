@@ -8,21 +8,15 @@ class TextContent {
 
   // invoke if user correctly types currentChar, unless 
   nextChar() {
-    if (!this.isFinished()) {
-      this.idx ++;
-      this.updateCurrentChar();
-    } else {
-      console.log("Can't go forward cause finished.")
-    }
+    this.idx ++;
+    this.updateCurrentChar();
   }
 
   makeTypeable(body) {
-    console.log(body)
     let multiplied = body;
     for (let i = 0; i < 3; i++) {
       multiplied = multiplied + " " + body;
     }
-    console.log(multiplied);
     multiplied = multiplied.replace(/…/g, "...");
     multiplied = multiplied.replace(/–/g, "-");
     return multiplied.replace(/\s{2,}/g, " ");

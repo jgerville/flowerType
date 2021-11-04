@@ -76,7 +76,7 @@ class TextView {
           this._adjustMusic();
         }
       } else if (this._isIgnoredKey(key)) {
-        console.log(`${key} will not be counted as incorrect because it's on the ignore list.`)
+        // console.log(`${key} will not be counted as incorrect because it's on the ignore list.`)
       } else {
         this._wrongChar(key);
         this.music.slower();
@@ -125,7 +125,6 @@ class TextView {
       wrongEle.classList.add('still-wrong-char');
     }
     wrongEle.classList.add('wrong-char')
-    console.log(`Wrong entry. the next char is: ${this.textContent.currentChar}`)
   }
 
   _colorCurrentElement() {
