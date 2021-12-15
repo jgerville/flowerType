@@ -3,11 +3,16 @@
 
 .start-container {
   padding: 1em;
-}
 
-input {
+  input {
     display: block;
     width: 60%;
     text-align: center;
     margin: 1em auto 1em;
+    padding: 10px;
+    font-size: 15px;
+    border: 1px solid v.$right;
+    border-radius: 1em;
+    outline: none;
+  }
 }

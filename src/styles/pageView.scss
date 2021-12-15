@@ -8,7 +8,7 @@ body {
 
 button {
   margin: 0 5px;
-	padding: 12px 20px;
+	padding: 10px 20px;
 	background-color: v.$right;
   border: none;
 	border-radius:28px;
@@ -16,6 +16,7 @@ button {
 	color:#ffffff;
   font-family: inherit;
 	font-size:17px;
+  transition: background-color 0.3s ease-out;
 
   &:hover {
 	background-color: v.$border;
@@ -24,6 +25,10 @@ button {
   &:active {
 	background-color: v.$border;
   }
+}
+
+button#start-button {
+  width: 20%;
 }
 
 form {
@@ -48,7 +53,8 @@ form {
 
 .top-half {
   position: relative;
-  border: 2px groove v.$border;
+  border: 2px solid v.$right;
+  border-radius: 15px;
   text-align: center;
 
   .text-container {
@@ -61,7 +67,8 @@ form {
   position: relative;
   height: 60%;
   margin-top: 2%;
-  border: 2px solid v.$border;
+  border: 2px solid v.$right;
+  border-radius: 15px;
   text-align: center;
   font-size: 2rem;
 
@@ -73,9 +80,13 @@ form {
       margin: 0 auto;
       text-align: center;
       padding: 0 0.2em 0.2em;
-      border-left: 2px solid v.$border;
-      border-right: 2px solid v.$border;
-      border-bottom: 2px solid v.$border;
+      // border-left: 2px solid v.$right;
+      // border-right: 2px solid v.$right;
+      // border-bottom: 2px solid v.$right;
+    }
+
+    p input {
+      
     }
   }
 }

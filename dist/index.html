@@ -9,6 +9,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="./main.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="./assets/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicons/favicon-16x16.png">
+  <link rel="manifest" href="./assets/favicons/site.webmanifest">
   <script src="./main.js" defer></script>
   <title>Flower Type</title>
 </head>
@@ -28,10 +32,12 @@
       <div class="instructions">
         <h2>Instructions</h2>
         <p>Type a sentence about any subject you want (the longer, the better).</p>
+        <p>If you type faster than
+          <input type="text" id="wpm-input">
+          words per minute, the music will get faster and faster!</p>
         <p>Click on the start button when you're ready!</p>
-        <p>The DeepAI API will use AI to generate some text for you to type.</p>
-        <p>If you type faster than 65 words per minute, the music will get faster and faster!</p>
-        <p>After the timer is up, you will be able to look at some data about your typing.</p>
+        <!-- <p>The DeepAI API will use AI to generate some text for you to type.</p> -->
+        <!-- <p>After the timer is up, you will be able to look at some data about your typing.</p> -->
       </div>
       <canvas class="hidden" id="graphics-canvas">dynamic graphics go here</canvas>
     </div>
