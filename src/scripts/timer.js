@@ -85,9 +85,17 @@ class Timer {
     githubButton.type = 'submit';
     ghbForm.appendChild(githubButton);
 
+    const linkedInForm = document.createElement('form');
+    linkedInForm.action = 'https://www.linkedin.com/in/julian-erville/';
     const linkedInButton = document.createElement('button');
     linkedInButton.append('LinkedIn');
     linkedInButton.classList.add('linkedIn-button');
+    linkedInButton.type = 'submit';
+    linkedInForm.appendChild(githubButton);
+
+    // const linkedInButton = document.createElement('button');
+    // linkedInButton.append('LinkedIn');
+    // linkedInButton.classList.add('linkedIn-button');
 
     // clear the container
     if (this.container.children.length > 0) {
