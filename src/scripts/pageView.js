@@ -36,6 +36,7 @@ class PageView {
 
     Util.getEleAddHidden('.instructions');
     Util.getEleRemoveHidden('#graphics-canvas');
+    const targetWPM = Number(Util.q('#wpm-input').value);
 
     if (this.start.special) {
       this.music = new Music('assets/special.mp3', 'egg')
@@ -46,7 +47,7 @@ class PageView {
       this.music = new Music('assets/itsbab-Zachariah-Hickman.mp3');
     }
     
-    this._renderTextView(this.start.textGenerated);
+    this._renderTextView(this.start.textGenerated, targetWPM);
   }
 
   addMuteListeners() {
@@ -64,7 +65,7 @@ class PageView {
     })
   }
 
-  _renderTextView(text) {
+  _renderTextView(text, targetWPM) {
     const topHalf = Util.q('.top-half')
     
     const topHalfChildren = Array.from(topHalf.children);
@@ -79,7 +80,7 @@ class PageView {
     const timerContainer = Util.q('.timer-container');
     timerContainer.classList.add('ib')
     this.canvasInterval = this.canvasView.start()
-    this.textView = new TextView(text, this.canvasView, this.canvasInterval, this.music);
+    this.textView = new TextView(text, this.canvasView, this.canvasInterval, this.music, targetWPM);
     this.textStats = this.textView.textStats;
   }
 
