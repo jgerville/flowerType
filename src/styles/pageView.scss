@@ -85,8 +85,12 @@ form {
       // border-bottom: 2px solid v.$right;
     }
 
-    p input {
-
+    input {
+      border-radius: 14px;
+      font-size: 24px;
+      width: 4rem;
+      border: 1px solid v.$right;
+      text-align: center;
     }
   }
 
