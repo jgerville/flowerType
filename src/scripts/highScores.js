@@ -18,7 +18,7 @@ class HighScores {
     return scoresArray;
   }
 
-  async postScore(kind = "normal", name, wpm, errors) {
+  async postScore(kind = 'normal', name, wpm, errors) {
     const rawResponse = await fetch('/postScore', {
       method: 'POST',
       headers: {
@@ -37,39 +37,60 @@ class HighScores {
     return rank;
   }
 
-  _render(newRank, newKind, newName, newWpm, newErrors) {
+  _render(newRank, newKind = 'normal', newName, newWPM, newErrors) {
     let currentRank = 1;
+    let lowestWPMOnLeaderboard;
     for (let i = 0; i < this.scoreData.length; i++) {
       if (i === 5) break;
+      if (i === this.scoreData.length - 1 || i === 4) {
+        lowestWPMOnLeaderboard = this.scoreData[i].wpm;
+      }
 
-      let targetContainer = Util.q(`.score${i + 1}`);
-
-      let rank = document.createElement('h4');
-      rank.classList.add('table-cell');
       if (i > 0) {
         if (this.scoreData[i].wpm !== this.scoreData[i-1].wpm) {
           currentRank ++;
         }
       }
-      rank.append(`${currentRank}`);
 
-      let name = document.createElement('span');
-      name.classList.add('table-cell')
-      name.append(this.scoreData[i].info.name);
+      let targetSelector = `.score${i + 1}`;
+      let rank = `${currentRank}`;
+      let kind = newKind;
+      let name = this.scoreData[i].info.name;
+      let wpm = this.scoreData[i].wpm;
+      let errors = this.scoreData[i].info.errors;
 
-      let wpm = document.createElement('span');
-      wpm.classList.add('table-cell')
-      wpm.append(this.scoreData[i].wpm);
-
-      let errors = document.createElement('span');
-      errors.classList.add('table-cell')
-      errors.append(this.scoreData[i].info.errors);
-
-      targetContainer.append(rank);
-      targetContainer.append(name);
-      targetContainer.append(wpm);
-      targetContainer.append(errors);
+      this._renderRow(targetSelector, rank, kind, name, wpm, errors)
     }
+
+    if (newWPM < lowestWPMOnLeaderboard) {
+      let targetSelector = '.your-score';
+      this._renderRow(targetSelector, `${newRank}`, newName, newWPM, newErrors);
+    }
+  }
+
+  _renderRow(containerSelector, newRank, newKind, newName, newWPM, newErrors) {
+    let targetContainer = Util.q(containerSelector);
+
+    let rank = document.createElement('h4');
+    rank.classList.add('table-cell');
+    rank.append(`${newRank}`);
+
+    let name = document.createElement('span');
+    name.classList.add('table-cell')
+    name.append(newName);
+
+    let wpm = document.createElement('span');
+    wpm.classList.add('table-cell')
+    wpm.append(newWPM);
+
+    let errors = document.createElement('span');
+    errors.classList.add('table-cell')
+    errors.append(newErrors);
+
+    targetContainer.append(rank);
+    targetContainer.append(name);
+    targetContainer.append(wpm);
+    targetContainer.append(errors);
   }
 }
 
