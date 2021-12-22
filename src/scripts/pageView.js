@@ -1,3 +1,4 @@
+import HighScores from "./highScores";
 import Music from "./music";
 import Start from "./start";
 import TextView from "./textView";
@@ -6,6 +7,7 @@ import Util from "./utilities";
 class PageView {
   constructor(canvasView) {
     this.start = new Start
+    this.highScores = new HighScores;
     this.textView;
     this.textStats;
     this.canvasView = canvasView;
@@ -20,6 +22,7 @@ class PageView {
     this.addStatsButtonListener();
     this.addRestartButtonListener();
     this.addMuteListeners();
+    this._renderHighScores();
   }
 
   addStartButtonListener() {
@@ -51,7 +54,7 @@ class PageView {
   }
 
   addMuteListeners() {
-    const container = document.querySelector('.top-half');
+    const container = document.querySelector('.top');
     container.addEventListener('click', (e) => {
       if (e.target.classList.contains('fa-volume-up')) {
         this.music.mute();
@@ -66,7 +69,7 @@ class PageView {
   }
 
   _renderTextView(text, targetWPM) {
-    const topHalf = Util.q('.top-half')
+    const topHalf = Util.q('.top')
     
     const topHalfChildren = Array.from(topHalf.children);
     for (let i = 1; i < topHalfChildren.length; i++) {
@@ -82,6 +85,10 @@ class PageView {
     this.canvasInterval = this.canvasView.start()
     this.textView = new TextView(text, this.canvasView, this.canvasInterval, this.music, targetWPM);
     this.textStats = this.textView.textStats;
+  }
+
+  _renderHighScores() {
+    this.highScores.init();
   }
 
   addStatsButtonListener() {

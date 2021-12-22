@@ -24,17 +24,16 @@
 </head>
 <body>
   <div class="page-container">
-    <div class="top-half">
+    <section class="top">
       <i id="mute" class="fas fa-volume-mute hidden"></i>
       <i id="unmute" class="fas fa-volume-up hidden"></i>
       <div id="start-container" class="start-container"></div>
       <div class="timer-container hidden"></div>
       <div class="text-container hidden"></div>
       <div class="stats-container hidden"></div>
-    </div>
+    </section>
 
-
-    <div class="bottom-half">
+    <section class="middle">
       <div class="instructions">
         <h2>Instructions</h2>
         <p>Type a sentence about any subject you want (the longer, the better).</p>
@@ -46,7 +45,27 @@
         <!-- <p>After the timer is up, you will be able to look at some data about your typing.</p> -->
       </div>
       <canvas class="hidden" id="graphics-canvas">dynamic graphics go here</canvas>
-    </div>
+    </section>
+
+    <section class="bottom">
+      <div class="scores">
+        <h2 class="table-caption">High Scores</h2>
+        <div class="table-header">
+          <div class="table-header-cell">Rank</div>
+          <div class="table-header-cell">Name</div>
+          <div class="table-header-cell">WPM</div>
+          <div class="table-header-cell">Errors</div>
+        </div>
+        <div class="table-body">
+          <div class="score1 table-row"></div>
+          <div class="score2 table-row"></div>
+          <div class="score3 table-row"></div>
+          <div class="score4 table-row"></div>
+          <div class="score5 table-row"></div>
+          <div class="your-score table-row"></div>
+        </div>
+      </div>
+    </section>
   </div>
   
   

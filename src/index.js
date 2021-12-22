@@ -4,7 +4,7 @@ import Util from "./scripts/utilities";
 
 
 const canvasEl = document.getElementById("graphics-canvas");
-const canvasParent = document.querySelector(".bottom-half");
+const canvasParent = document.querySelector(".middle");
 const rect = canvasParent.getBoundingClientRect();
 
 const ctxX = rect.width - 4;

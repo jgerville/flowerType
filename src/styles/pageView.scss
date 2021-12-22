@@ -54,7 +54,7 @@ form {
   flex-direction: column;
 }
 
-.top-half {
+.top {
   position: relative;
   border: 2px solid v.$border;
   border-radius: 15px;
@@ -65,7 +65,7 @@ form {
   }
 }
 
-.bottom-half {
+.middle {
   display: block;
   position: relative;
   height: 60%;
