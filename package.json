@@ -29,6 +29,7 @@
   "dependencies": {
     "@babel/core": "^7.15.8",
     "@babel/preset-env": "^7.15.8",
+    "aws-sdk": "^2.1048.0",
     "axios": "^0.24.0",
     "babel-loader": "^8.2.3",
     "core-js": "^3.19.0",
@@ -37,10 +38,12 @@
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "mini-css-extract-plugin": "^2.4.3",
+    "mongodb": "^4.2.2",
     "node-fetch": "^3.0.0",
     "regenerator-runtime": "^0.13.9",
     "sass": "^1.43.4",
     "sass-loader": "^12.3.0",
+    "uuid": "^8.3.2",
     "webpack": "^5.60.0",
     "webpack-cli": "^4.9.1"
   }

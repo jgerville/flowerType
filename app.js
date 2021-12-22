@@ -1,9 +1,11 @@
 const express = require('express');
+const awsUtil = require('./awsUtil');
 
 require('dotenv').config();
 
 const app = express();
 app.use(express.static('dist'));
+app.use(express.urlencoded({ extended: true }))
 
 app.get('/', (req, res) => {
   res.sendFile(`${__dirname}/dist/index.html`)
@@ -19,7 +21,22 @@ app.get('/special', async (req, res) => {
   res.send(text);
 })
 
-const PORT = process.env.PORT || 8000;
+app.post('/postScore', async (req, res) => {
+  console.log(req.body);
+  const { kind, name, wpm, errors } = req.body;
+  await awsUtil.postScore(kind, name, wpm, errors);
+  const scores = await awsUtil.fetchScores(kind);
+  res.send(scores)
+})
+
+app.get('/getScores/:kind', async (req, res) => {
+  const kind = req.params.kind;
+  const scores = await awsUtil.fetchScores(kind);
+  res.send(scores);
+})
+
+
+const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
   console.log(`Now listening at localhost:${PORT}`);
 });
