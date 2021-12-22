@@ -32,12 +32,13 @@ class HighScores {
     const data = await rawResponse.json();
     const scoresArray = data.Items;
     this.scoreData = scoresArray;
-    this._render(wpm);
     const rank = scoresArray.findIndex((score) => score.wpm == wpm); 
+    this._render(rank, kind, name, wpm, errors);
     return rank;
   }
 
-  _render(newWpm) {
+  _render(newRank, newKind, newName, newWpm, newErrors) {
+    let currentRank = 1;
     for (let i = 0; i < this.scoreData.length; i++) {
       if (i === 5) break;
 
@@ -45,7 +46,12 @@ class HighScores {
 
       let rank = document.createElement('h4');
       rank.classList.add('table-cell');
-      rank.append(`${i + 1}`);
+      if (i > 0) {
+        if (this.scoreData[i].wpm !== this.scoreData[i-1].wpm) {
+          currentRank ++;
+        }
+      }
+      rank.append(`${currentRank}`);
 
       let name = document.createElement('span');
       name.classList.add('table-cell')
