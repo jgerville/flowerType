@@ -1,5 +1,6 @@
 import CanvasView from "./scripts/canvas/canvasView";
 import PageView from "./scripts/pageView";
+import Util from "./scripts/utilities";
 
 
 const canvasEl = document.getElementById("graphics-canvas");

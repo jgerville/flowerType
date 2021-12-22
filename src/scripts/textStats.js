@@ -1,7 +1,10 @@
+import Util from "./utilities";
+
 class TextStats {
-  constructor(allottedTime) {
+  constructor(allottedTime, targetWPM) {
     this.numWordsTyped = 0;
     this.allottedTime = allottedTime;
+    this.targetWPM = targetWPM;
 
     this.numWrongKeydowns = 0;
     this.missedCharCounts = {};
@@ -32,10 +35,17 @@ class TextStats {
 
     // const ul = this._createRightCharWrongCharElement();
     
-    div.appendChild(p1);
-    div.appendChild(p2);
-    div.appendChild(p3);
+    // div.appendChild(p1);
+    // div.appendChild(p2);
+    // div.appendChild(p3);
+
     // div.appendChild(ul);
+
+    const { wpmCircle, errorCircle } = this._createStatCircles(wpm, this.numWrongKeydowns);
+    console.log(wpmCircle, errorCircle)
+    div.appendChild(wpmCircle);
+    div.appendChild(errorCircle);
+
     container.appendChild(div);
   }
 
@@ -108,6 +118,12 @@ class TextStats {
 
   _incrementNumWrongKeydowns() {
     this.numWrongKeydowns ++;
+  }
+
+  _createStatCircles(wpm, numErrors) {
+    const wpmCircle = Util.createStatCircle(wpm, 'WPM');
+    const errorCircle = Util.createStatCircle(numErrors, 'errors');
+    return { wpmCircle, errorCircle };
   }
 }
 

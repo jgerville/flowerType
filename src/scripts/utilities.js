@@ -47,9 +47,22 @@ const Util = {
 
   removeHidden(element) {
     element.classList.remove('hidden');
+  },
+
+  createStatCircle(number, caption) {
+    const circle = document.createElement('figure');
+    circle.classList.add('stat-circle');
+
+    const num = document.createElement('span');
+    num.append(`${number}`);
+    
+    const cap = document.createElement('figcaption');
+    cap.append(caption);
+
+    circle.appendChild(num);
+    circle.appendChild(cap);
+    return circle;
   }
-
-
 }
 
 export default Util;

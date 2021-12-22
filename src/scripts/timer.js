@@ -77,25 +77,15 @@ class Timer {
     restartButton.append('Restart');
     restartButton.classList.add('restart-button');
 
-    const ghbForm = document.createElement('form');
-    ghbForm.action = 'https://github.com/jgerville';
-    const githubButton = document.createElement('button');
-    githubButton.append('Github');
-    githubButton.classList.add('github-button');
-    githubButton.type = 'submit';
-    ghbForm.appendChild(githubButton);
+    const githubLink = document.createElement('a');
+    githubLink.append('Github');
+    githubLink.title = 'Check out my Github!';
+    githubLink.href = 'https://github.com/jgerville';
 
-    const linkedInForm = document.createElement('form');
-    linkedInForm.action = 'https://www.linkedin.com/in/julian-erville/';
-    const linkedInButton = document.createElement('button');
-    linkedInButton.append('LinkedIn');
-    linkedInButton.classList.add('linkedIn-button');
-    linkedInButton.type = 'submit';
-    linkedInForm.appendChild(githubButton);
-
-    // const linkedInButton = document.createElement('button');
-    // linkedInButton.append('LinkedIn');
-    // linkedInButton.classList.add('linkedIn-button');
+    const linkedInLink = document.createElement('a');
+    linkedInLink.append('LinkedIn');
+    linkedInLink.title = 'Connect with me!';
+    linkedInLink.href = 'https://www.linkedin.com/in/julian-erville/';
 
     // clear the container
     if (this.container.children.length > 0) {
@@ -104,9 +94,9 @@ class Timer {
       }
     }
 
-    this.container.appendChild(ghbForm);
+    this.container.appendChild(githubLink);
     this.container.appendChild(restartButton);
-    this.container.appendChild(linkedInButton);
+    this.container.appendChild(linkedInLink);
   }
 
   _addTimerColor(secondsLeft) {

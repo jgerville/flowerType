@@ -25,7 +25,7 @@ class TextView {
     }
 
     this.timer = new Timer(allottedTime, this.timerContainer, canvasInterval, this.music);
-    this.textStats = new TextStats(this.timer.initialTime);
+    this.textStats = new TextStats(this.timer.initialTime, targetWPM);
 
     this.boundTypingListener = this._typingListener.bind(this);
 

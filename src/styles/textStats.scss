@@ -1,22 +1,54 @@
+@use 'variables' as v;
+
 .stats-container div {
-  p {
-    font-family: inherit;
-    font-size: 1.5rem;
-  }
+  // p {
+  //   font-family: inherit;
+  //   font-size: 1.5rem;
+  // }
 
-  ul {
-    li {
-      p {
-        font-family: inherit;
-        font-size: 1.5rem;
-      }
+  // ul {
+  //   li {
+  //     p {
+  //       font-family: inherit;
+  //       font-size: 1.5rem;
+  //     }
 
-      ul {
-        li {
-          font-family: inherit;
-          font-size: 1.2rem;
-        }
-      }
+  //     ul {
+  //       li {
+  //         font-family: inherit;
+  //         font-size: 1.2rem;
+  //       }
+  //     }
+  //   }
+  // }
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .stat-circle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+    padding: 1rem 1.45rem;
+    border: 3px solid v.$right;
+    // border-radius: 50%;
+    border-radius: 9999px;
+
+    span {
+      font-size: x-large;
+      font-weight: 500;
+    }
+
+    figcaption {
+      font-size: small;
+      font-weight: 400;
+    }
+
+    &:first-of-type {
+      padding: 1rem 1.65rem;
     }
   }
 }

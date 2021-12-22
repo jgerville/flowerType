@@ -4,9 +4,10 @@ body {
   font-family: 'Open Sans', sans-serif;
   line-height: 1.5;
   background-color: v.$off-white;
+  color: v.$text;
 }
 
-button {
+button, a {
   margin: 0 5px;
 	padding: 10px 20px;
 	background-color: v.$right;
@@ -17,6 +18,7 @@ button {
   font-family: inherit;
 	font-size:17px;
   transition: background-color 0.3s ease-out;
+  text-decoration: none;
 
   &:hover {
 	background-color: v.$border;
