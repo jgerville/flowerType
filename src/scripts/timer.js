@@ -83,11 +83,13 @@ class Timer {
     githubLink.append('Github');
     githubLink.title = 'Check out my Github!';
     githubLink.href = 'https://github.com/jgerville';
+    githubLink.target= "_blank"
 
     const linkedInLink = document.createElement('a');
     linkedInLink.append('LinkedIn');
     linkedInLink.title = 'Connect with me!';
     linkedInLink.href = 'https://www.linkedin.com/in/julian-erville/';
+    linkedInLink.target= "_blank"
 
     // clear the container
     if (this.container.children.length > 0) {

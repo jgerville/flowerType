@@ -21,11 +21,17 @@ button, a {
   text-decoration: none;
 
   &:hover {
-	background-color: v.$border;
+	  background-color: v.$border;
   }
 
   &:active {
-	background-color: v.$border;
+	  background-color: v.$border;
+  }
+
+  &:disabled {
+    opacity: 30%;
+    cursor: default;
+    background-color: v.$right;
   }
 }
 

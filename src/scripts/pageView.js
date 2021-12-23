@@ -133,48 +133,6 @@ class PageView {
     }
   }
 
-  // addSubmitButtonListener() {
-  //   const submitScoreContainer = Util.q('.submit-score-container');
-  //   submitScoreContainer.addEventListener('click', this.boundSubmitButtonListener);
-  // }
-
-  // async submitButtonListener(e) {
-  //   if (e.target.classList.contains('submit-score-button')) {
-  //     e.preventDefault();
-  //     const submitScoreInput = Util.q('.submit-score-input');
-  //     if (submitScoreInput.value) {
-  //       const submitScoreButton = Util.q('.submit-score-button');
-  //       submitScoreButton.innerText = 'Uploading, please wait...';
-  //       submitScoreButton.disabled = true;
-  //       const username = submitScoreInput.value
-  //       const wpm = this.textStats.getWPM();
-  //       const errors = this.textStats.getErrors();
-  //       try {
-  //         await this.highScores.postScore(username, wpm, errors);
-  //         submitScoreButton.innerText = 'Submitted!'
-  //         const submitScoreContainer = Util.q('.submit-score-container');
-  //         submitScoreContainer.removeEventListener('click', this.boundSubmitButtonListener);
-  //       } catch (error) {
-  //         this._addErrorToSubmitScore('Looks like something went wrong. Please try again!');
-  //         submitScoreButton.innerText = 'Submit';
-  //         submitScoreButton.disabled = false;
-  //       }
-  //     } else {
-  //       this._addErrorToSubmitScore('Make sure to enter a name before submitting!')
-  //     }
-  //   }
-  // }
-
-  // _addErrorToSubmitScore(errorText) {
-  //   const submitScoreError = Util.q('submit-score-error');
-  //   if (submitScoreError.children.length > 0) {
-  //     for (const child of submitScoreError.children) {
-  //       submitScoreError.removeChild(child)
-  //     }
-  //   }
-  //   submitScoreError.append(errorText);
-  // }
-
   resetPage() {
     Util.getEleRemoveChildrenRemoveHidden('.start-container');
     Util.resetTimerContainer();

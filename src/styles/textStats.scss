@@ -1,33 +1,67 @@
 @use 'variables' as v;
 
-.stats-container div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.stats-container {
 
-  .stat-circle {
+  .stats {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 1rem;
-    padding: 1rem 1.45rem;
-    border: 3px solid v.$right;
-    // border-radius: 50%;
-    border-radius: 9999px;
+  
+    .stat-circle {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin: 1rem;
+      padding: 1rem 1.45rem;
+      border: 3px solid v.$right;
+      // border-radius: 50%;
+      border-radius: 9999px;
+  
+      span {
+        font-size: x-large;
+        font-weight: 500;
+      }
+  
+      figcaption {
+        font-size: small;
+        font-weight: 400;
+      }
+  
+      &:first-of-type {
+        padding: 1rem 1.65rem;
+      }
+    }
+  }
 
-    span {
-      font-size: x-large;
-      font-weight: 500;
+  .submit-score-container {
+    display: flex;
+    flex-direction: column;
+
+    .submit-score-error {
+      color: v.$border;
     }
 
-    figcaption {
-      font-size: small;
-      font-weight: 400;
-    }
+    .input-row {
+      margin-bottom: 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.6rem;
 
-    &:first-of-type {
-      padding: 1rem 1.65rem;
+      input {
+        border-radius: 1em;
+        font-size: 15px;
+        padding: 7px 40px;
+        width: 5rem;
+        border: 1px solid v.$border;
+        text-align: center;
+        outline: none;
+      }
+
+      button {
+        padding: 5px 40px;
+      }
     }
   }
 }

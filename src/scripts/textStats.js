@@ -97,6 +97,9 @@ class TextStats {
     const submitScoreContainer = document.createElement('div');
     submitScoreContainer.classList.add('submit-score-container');
 
+    const inputRow = document.createElement('div');
+    inputRow.classList.add('input-row');
+
     const submitScoreInput = document.createElement('input');
     submitScoreInput.classList.add('submit-score-input');
     submitScoreInput.placeholder = 'Your Name';
@@ -108,9 +111,11 @@ class TextStats {
     submitScoreButton.classList.add('submit-score-button');
     submitScoreButton.append('Submit');
 
-    submitScoreContainer.appendChild(submitScoreInput);
+    inputRow.appendChild(submitScoreInput);
+    inputRow.appendChild(submitScoreButton);
+
     submitScoreContainer.appendChild(submitScoreError);
-    submitScoreContainer.appendChild(submitScoreButton);
+    submitScoreContainer.appendChild(inputRow);
 
 
     container.appendChild(div);
