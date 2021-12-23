@@ -83,12 +83,12 @@ async function postScore(kind, name, wpm, errors) {
 //   return scores;
 // }
 
+// returns: the array itself
 async function fetchScores(kind) {
   let scores = [];
   try {
     const params = {
       TableName: "Scores",
-      ScanIndexForward: false,
     };
 
     let items;
@@ -96,15 +96,7 @@ async function fetchScores(kind) {
       items = await docClient.scan(params).promise();
       items.Items.forEach((item) => {
         if (item.info.kind === kind) {
-          if (scores.length > 0) {
-            if (item.wpm > scores[scores.length - 1].wpm) {
-                scores.unshift(item);
-            } else {
-                scores.push(item);
-            }
-          } else {
-            scores.push(item);
-          }
+          scores.push(item)
         }
       });
       params.ExclusiveStartKey = items.LastEvaluatedKey;
@@ -112,7 +104,8 @@ async function fetchScores(kind) {
   } catch (err) {
     console.log(err);
   }
-  return scores;
+  const sorted = scores.sort((a, b) => b.wpm - a.wpm);
+  return sorted;
 }
 
 module.exports = {

@@ -13,9 +13,8 @@ class HighScores {
   async getScores() {
     const rawResponse = await fetch('/getScores/normal')
     const data = await rawResponse.json();
-    const scoresArray = data.Items;
-    this.scoreData = scoresArray;
-    return scoresArray;
+    this.scoreData = data;
+    return data;
   }
 
   async postScore(kind = 'normal', name, wpm, errors) {
@@ -55,7 +54,7 @@ class HighScores {
       let targetSelector = `.score${i + 1}`;
       let rank = `${currentRank}`;
       let kind = newKind;
-      let name = this.scoreData[i].info.name;
+      let name = this.scoreData[i].username;
       let wpm = this.scoreData[i].wpm;
       let errors = this.scoreData[i].info.errors;
 
