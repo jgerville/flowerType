@@ -38,6 +38,7 @@ class HighScores {
 
   _render(newRank, newKind = 'normal', newName, newWPM, newErrors) {
     let currentRank = 1;
+    let ranksToAdd = 0;
     let lowestWPMOnLeaderboard;
     for (let i = 0; i < this.scoreData.length; i++) {
       if (i === 5) break;
@@ -45,9 +46,21 @@ class HighScores {
         lowestWPMOnLeaderboard = this.scoreData[i].wpm;
       }
 
+      let wpm = this.scoreData[i].wpm;
+      let errors = this.scoreData[i].info.errors;
+      
       if (i > 0) {
-        if (this.scoreData[i].wpm !== this.scoreData[i-1].wpm) {
-          currentRank ++;
+        let prevWpm = this.scoreData[i - 1].wpm
+        let prevErrors = this.scoreData[i - 1].info.errors;
+        if (wpm === prevWpm && errors === prevErrors) {
+          ranksToAdd ++;
+        } else {
+          // if there were ties earlier, we must increase the rank #.
+          // e.g. 1, 1, 2, 3, 4: BAD
+          // e.g. 1, 1, 3, 4, 5: GOOD
+          ranksToAdd ++;
+          currentRank += ranksToAdd;
+          ranksToAdd = 0;
         }
       }
 
@@ -55,8 +68,6 @@ class HighScores {
       let rank = `${currentRank}`;
       let kind = newKind;
       let name = this.scoreData[i].username;
-      let wpm = this.scoreData[i].wpm;
-      let errors = this.scoreData[i].info.errors;
 
       this._renderRow(targetSelector, rank, kind, name, wpm, errors)
     }

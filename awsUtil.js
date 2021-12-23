@@ -104,7 +104,22 @@ async function fetchScores(kind) {
   } catch (err) {
     console.log(err);
   }
-  const sorted = scores.sort((a, b) => b.wpm - a.wpm);
+  const sorted = scores.sort((a, b) => {
+    if (a.wpm > b.wpm) {
+      return -1;
+    } else if (a.wpm > b.wpm) {
+      return 1;
+    } else {
+      if (a.info.errors < b.info.errors) {
+        return -1;
+      } else if (a.info.errors > b.info.errors) {
+        return 1;
+      } else {
+        // if wpm and errors are equal, it doesn't really matter which one goes first.
+        return -1;
+      }
+    }
+  });
   return sorted;
 }
 
