@@ -1,3 +1,5 @@
+import Util from "./utilities";
+
 class Timer {
   constructor(numSeconds, container, canvasInterval, music) {
     this.initialTime = numSeconds;
@@ -72,7 +74,7 @@ class Timer {
     this.container.appendChild(button);
   }
 
-  renderRestartButton() {
+  renderPostGame() {
     const restartButton = document.createElement('button');
     restartButton.append('Restart');
     restartButton.classList.add('restart-button');

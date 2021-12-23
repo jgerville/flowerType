@@ -5,7 +5,8 @@ require('dotenv').config();
 
 const app = express();
 app.use(express.static('dist'));
-app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 app.get('/', (req, res) => {
   res.sendFile(`${__dirname}/dist/index.html`)
@@ -22,7 +23,6 @@ app.get('/special', async (req, res) => {
 })
 
 app.post('/postScore', async (req, res) => {
-  console.log(req.body);
   const { kind, name, wpm, errors } = req.body;
   await awsUtil.postScore(kind, name, wpm, errors);
   const scores = await awsUtil.fetchScores(kind);

@@ -1,10 +1,11 @@
 import Util from "./utilities";
 
 class TextStats {
-  constructor(allottedTime, targetWPM) {
+  constructor(allottedTime, targetWPM, highScores) {
     this.numWordsTyped = 0;
     this.allottedTime = allottedTime;
     this.targetWPM = targetWPM;
+    this.highScores = highScores;
 
     this.numWrongKeydowns = 0;
     this.missedCharCounts = {};
@@ -12,13 +13,61 @@ class TextStats {
     // keys: what user should have typed
     // values: {k: what user actually typed, v: #times}
     this.rightCharWrongChar = {};
+
+    this.boundSubmitButtonListener = this.submitButtonListener.bind(this);
+  }
+
+  addSubmitButtonListener() {
+    const submitScoreContainer = Util.q('.submit-score-container');
+    submitScoreContainer.addEventListener('click', this.boundSubmitButtonListener);
+  }
+
+  async submitButtonListener(e) {
+    if (e.target.classList.contains('submit-score-button')) {
+      e.preventDefault();
+      const submitScoreInput = Util.q('.submit-score-input');
+      if (submitScoreInput.value) {
+        const submitScoreButton = Util.q('.submit-score-button');
+        submitScoreButton.innerText = 'Uploading, please wait...';
+        submitScoreButton.disabled = true;
+        const username = submitScoreInput.value
+        const wpm = this.getWPM();
+        const errors = this.getErrors();
+
+        try {
+          await this.highScores.postScore(username, wpm, errors);
+          submitScoreButton.innerText = 'Submitted!'
+          const submitScoreContainer = Util.q('.submit-score-container');
+          submitScoreContainer.removeEventListener('click', this.boundSubmitButtonListener);
+        } catch (error) {
+          this._addErrorToSubmitScore('Looks like something went wrong. Please try again!');
+          submitScoreButton.innerText = 'Submit';
+          submitScoreButton.disabled = false;
+        }
+      } else {
+        this._addErrorToSubmitScore('Make sure to enter a name before submitting!')
+      }
+    }
+  }
+
+  _addErrorToSubmitScore(errorText) {
+    const submitScoreError = Util.q('.submit-score-error');
+    if (submitScoreError.children.length > 0) {
+      for (const child of submitScoreError.children) {
+        submitScoreError.removeChild(child)
+      }
+    }
+    const p = document.createElement('p');
+    p.append(errorText);
+    submitScoreError.appendChild(p);
   }
 
   render(container) {
     const numMins = this.allottedTime / 60;
-    const wpm = this.numWordsTyped / numMins;
+    const wpm = this.getWPM();
 
     const div = document.createElement('div');
+    div.classList.add('stats');
 
     const p1 = document.createElement('p');
     if (numMins === 1) {
@@ -42,11 +91,40 @@ class TextStats {
     // div.appendChild(ul);
 
     const { wpmCircle, errorCircle } = this._createStatCircles(wpm, this.numWrongKeydowns);
-    console.log(wpmCircle, errorCircle)
     div.appendChild(wpmCircle);
     div.appendChild(errorCircle);
 
+    const submitScoreContainer = document.createElement('div');
+    submitScoreContainer.classList.add('submit-score-container');
+
+    const submitScoreInput = document.createElement('input');
+    submitScoreInput.classList.add('submit-score-input');
+    submitScoreInput.placeholder = 'Your Name';
+
+    const submitScoreError = document.createElement('div');
+    submitScoreError.classList.add('submit-score-error');
+
+    const submitScoreButton = document.createElement('button');
+    submitScoreButton.classList.add('submit-score-button');
+    submitScoreButton.append('Submit');
+
+    submitScoreContainer.appendChild(submitScoreInput);
+    submitScoreContainer.appendChild(submitScoreError);
+    submitScoreContainer.appendChild(submitScoreButton);
+
+
     container.appendChild(div);
+    container.appendChild(submitScoreContainer);
+    this.addSubmitButtonListener();
+  }
+
+  getWPM() {
+    const numMins = this.allottedTime / 60;
+    return this.numWordsTyped / numMins;
+  }
+
+  getErrors() {
+    return this.numWrongKeydowns;
   }
 
   setNumWordsTyped(currentSpan) {

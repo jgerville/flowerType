@@ -17,11 +17,12 @@ class HighScores {
     return data;
   }
 
-  async postScore(kind = 'normal', name, wpm, errors) {
+  async postScore(name, wpm, errors, kind = 'normal') {
     const rawResponse = await fetch('/postScore', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
+        // 'Content-Type': 'application/x-www-form-urlencoded'
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
@@ -29,14 +30,13 @@ class HighScores {
       })
     });
     const data = await rawResponse.json();
-    const scoresArray = data.Items;
-    this.scoreData = scoresArray;
-    const rank = scoresArray.findIndex((score) => score.wpm == wpm); 
-    this._render(rank, kind, name, wpm, errors);
+    this.scoreData = data;
+    const rank = data.findIndex((score) => score.wpm == wpm); 
+    this._render(rank, name, wpm, errors, kind);
     return rank;
   }
 
-  _render(newRank, newKind = 'normal', newName, newWPM, newErrors) {
+  _render(newRank, newName, newWPM, newErrors, newKind = 'normal') {
     let currentRank = 1;
     let ranksToAdd = 0;
     let lowestWPMOnLeaderboard;
@@ -74,12 +74,13 @@ class HighScores {
 
     if (newWPM < lowestWPMOnLeaderboard) {
       let targetSelector = '.your-score';
-      this._renderRow(targetSelector, `${newRank}`, newName, newWPM, newErrors);
+      this._renderRow(targetSelector, `${newRank}`, newKind, newName, newWPM, newErrors);
     }
   }
 
   _renderRow(containerSelector, newRank, newKind, newName, newWPM, newErrors) {
     let targetContainer = Util.q(containerSelector);
+    Util.removeChildren(targetContainer);
 
     let rank = document.createElement('h4');
     rank.classList.add('table-cell');

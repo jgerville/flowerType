@@ -107,7 +107,7 @@ async function fetchScores(kind) {
   const sorted = scores.sort((a, b) => {
     if (a.wpm > b.wpm) {
       return -1;
-    } else if (a.wpm > b.wpm) {
+    } else if (a.wpm < b.wpm) {
       return 1;
     } else {
       if (a.info.errors < b.info.errors) {
