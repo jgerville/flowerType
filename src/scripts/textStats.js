@@ -27,6 +27,9 @@ class TextStats {
       e.preventDefault();
       const submitScoreInput = Util.q('.submit-score-input');
       if (submitScoreInput.value) {
+        const submitScoreError = Util.q('.submit-score-error');
+        Util.removeChildren(submitScoreError);
+        
         const submitScoreButton = Util.q('.submit-score-button');
         submitScoreButton.innerText = 'Uploading, please wait...';
         submitScoreButton.disabled = true;
@@ -52,11 +55,7 @@ class TextStats {
 
   _addErrorToSubmitScore(errorText) {
     const submitScoreError = Util.q('.submit-score-error');
-    if (submitScoreError.children.length > 0) {
-      for (const child of submitScoreError.children) {
-        submitScoreError.removeChild(child)
-      }
-    }
+    Util.removeChildren(submitScoreError);
     const p = document.createElement('p');
     p.append(errorText);
     submitScoreError.appendChild(p);
