@@ -14,16 +14,22 @@ class Start {
   }
 
   render() {
+    const form = document.createElement('form');
+    
     const input = document.createElement('input');
     input.id = 'sentence-input'
     input.type = 'text';
     input.placeholder = 'Type a sentence or two in here!'
-    this.container.appendChild(input);
+    input.autofocus = true;
 
     const button = document.createElement('button');
     button.id = 'start-button'
     button.innerText = 'Start';
-    this.container.appendChild(button);
+
+    form.appendChild(input);
+    form.appendChild(button);
+    this.container.appendChild(form);
+    Util.q('#sentence-input').focus();
   }
 
   async generateText() {

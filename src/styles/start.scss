@@ -4,15 +4,20 @@
 .start-container {
   padding: 1em;
 
-  input {
-    display: block;
-    width: 60%;
-    text-align: center;
-    margin: 1em auto 1em;
-    padding: 10px;
-    font-size: 15px;
-    border: 1px solid v.$border;
-    border-radius: 1em;
-    outline: none;
+  form {
+    width: 100%;
+
+    input {
+      display: block;
+      width: 60%;
+      text-align: center;
+      margin: 1em auto 1em;
+      padding: 10px;
+      font-size: 15px;
+      border: 1px solid v.$border;
+      border-radius: 1em;
+      outline: none;
+    }
   }
+
 }
