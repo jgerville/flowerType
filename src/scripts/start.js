@@ -9,8 +9,9 @@ class Start {
     this.test = false;
 
     this.render();
-    this.button = Util.q('#start-button')
-    this.input = Util.q('#sentence-input')
+    this.button = Util.q('#start-button');
+    this.pokeButton = Util.q('#poke-button');
+    this.input = Util.q('#sentence-input');
   }
 
   render() {
@@ -23,11 +24,16 @@ class Start {
     input.autofocus = true;
 
     const button = document.createElement('button');
-    button.id = 'start-button'
+    button.id = 'start-button';
     button.innerText = 'Start';
+
+    const pokeButton = document.createElement('button');
+    pokeButton.id = 'poke-button';
+    pokeButton.innerText = 'Pokemon Mode (expert)';
 
     form.appendChild(input);
     form.appendChild(button);
+    form.appendChild(pokeButton);
     this.container.appendChild(form);
     Util.q('#sentence-input').focus();
   }

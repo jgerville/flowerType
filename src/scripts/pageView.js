@@ -17,12 +17,12 @@ class PageView {
     this.boundStartHandler = this.startButtonHandler.bind(this);
     this.boundStatsHandler = this.statsButtonHandler.bind(this);
     this.boundRestartHandler = this.restartButtonHandler.bind(this);
-    // this.boundSubmitButtonListener = this.submitButtonListener.bind(this);
-    // this.addSubmitButtonListener();
+    this.boundPokeButtonHandler = this.pokeButtonHandler.bind(this);
 
     this.addStartButtonListener();
     this.addStatsButtonListener();
     this.addRestartButtonListener();
+    this.addPokeButtonListener();
     this.addMuteListeners();
     this._renderHighScores();
   }
@@ -31,7 +31,7 @@ class PageView {
     this.start.button.addEventListener('click', this.boundStartHandler);
   }
 
-  async startButtonHandler (e) {
+  async startButtonHandler(e) {
     e.preventDefault();
     this.start.button.removeEventListener('click', this.boundStartHandler);
     Util.getEleAddHidden('#sentence-input');
@@ -53,6 +53,17 @@ class PageView {
     }
     
     this._renderTextView(this.start.textGenerated, targetWPM);
+  }
+
+  addPokeButtonListener() {
+    this.start.pokeButton.addEventListener('click', this.boundPokeButtonHandler);
+  }
+
+  pokeButtonHandler(e) {
+    e.preventDefault();
+    Util.q('#sentence-input').value = 'Pokemon!';
+    this.start.pokeButton.removeEventListener('click', this.boundPokeButtonHandler);
+    this.start.button.click();
   }
 
   addMuteListeners() {
