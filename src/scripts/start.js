@@ -56,7 +56,7 @@ class Start {
       let key = response2.deepaiKEY;
       deepai.setApiKey(key);
       const resp = await deepai.callStandardApi("text-generator", {
-              text: value.slice(6),
+        text: value.slice(6),
       });
       this.textGenerated = resp.output;
       this.test = true;
@@ -66,7 +66,7 @@ class Start {
       let key = response2.deepaiKEY;
       deepai.setApiKey(key);
       const resp = await deepai.callStandardApi("text-generator", {
-              text: value,
+        text: value,
       });
       this.textGenerated = resp.output
     }

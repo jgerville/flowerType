@@ -14,7 +14,7 @@ class TextContent {
 
   makeTypeable(body) {
     let multiplied = body;
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 10; i++) {
       multiplied = multiplied + " " + body;
     }
     multiplied = multiplied.replace(/…/g, "...");

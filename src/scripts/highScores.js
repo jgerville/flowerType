@@ -120,7 +120,8 @@ class HighScores {
     name.append(newName);
 
     let wpm = document.createElement('span');
-    wpm.classList.add('table-cell')
+    wpm.classList.add('table-cell');
+    
     wpm.append(newWPM);
 
     let errors = document.createElement('span');
