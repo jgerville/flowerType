@@ -59,10 +59,11 @@ class PageView {
     this.start.pokeButton.addEventListener('click', this.boundPokeButtonHandler);
   }
 
-  pokeButtonHandler(e) {
+  async pokeButtonHandler(e) {
     e.preventDefault();
     Util.q('#sentence-input').value = 'Pokemon!';
     this.start.pokeButton.removeEventListener('click', this.boundPokeButtonHandler);
+    await this.highScores.pokeMode();
     this.start.button.click();
   }
 
@@ -149,8 +150,9 @@ class PageView {
     Util.resetTimerContainer();
     Util.getEleRemoveChildrenAddHidden('.text-container');
     Util.getEleRemoveChildrenAddHidden('.stats-container');
-    Util.getEleRemoveHidden('.instructions')
-    Util.getEleAddHidden('#graphics-canvas')
+    Util.getEleRemoveHidden('.instructions');
+    Util.getEleAddHidden('#graphics-canvas');
+    Util.q('.table-caption').innerText = 'High Scores';
 
     this.canvasView.clearCanvas();
     new PageView(this.canvasView);

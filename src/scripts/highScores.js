@@ -3,6 +3,7 @@ import Util from "./utilities";
 class HighScores {
   constructor() {
     this.scoreData = [];
+    this.mode = 'normal';
   }
 
   async init() {
@@ -17,7 +18,14 @@ class HighScores {
     return data;
   }
 
-  async postScore(name, wpm, errors, kind = 'normal') {
+  async getPokeScores() {
+    const rawResponse = await fetch('/getScores/pokemon')
+    const data = await rawResponse.json();
+    this.scoreData = data;
+    return data;
+  }
+
+  async postScore(name, wpm, errors, kind = this.mode) {
     const rawResponse = await fetch('/postScore', {
       method: 'POST',
       headers: {
@@ -36,7 +44,28 @@ class HighScores {
     return rank;
   }
 
-  _render(newRank, newName, newWPM, newErrors, newKind = 'normal') {
+  async pokeMode() {
+    this.mode = 'pokemon';
+    Util.q('.table-caption').innerText = 'High Scores (Pokemon Mode)';
+    await this.getPokeScores();
+    console.log(this.scoreData);
+    this._clearTable();
+    this._render();
+  }
+
+  normalMode() {
+    this.mode = 'normal';
+  }
+
+  _clearTable() {
+    for (let i = 0; i < 5; i++) {
+      let targetSelector = `.score${i + 1}`;
+      let targetContainer = Util.q(targetSelector);
+      Util.removeChildren(targetContainer);
+    }
+  }
+
+  _render(newRank, newName, newWPM, newErrors, newKind = this.mode) {
     let currentRank = 1;
     let ranksToAdd = 0;
     let lowestWPMOnLeaderboard;
