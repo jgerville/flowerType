@@ -19,6 +19,10 @@ class PageView {
     this.boundRestartHandler = this.restartButtonHandler.bind(this);
     this.boundPokeButtonHandler = this.pokeButtonHandler.bind(this);
 
+    this.init();
+  }
+
+  init() {
     this.addStartButtonListener();
     this.addStatsButtonListener();
     this.addRestartButtonListener();
