@@ -18,7 +18,7 @@ class TextView {
     
     let allottedTime = 60;
     if (this.music.easter === 'egg') {
-      allottedTime = 120;
+      allottedTime = 10;
     } else if (this.music.easter === 'test') {
       allottedTime = 30;
     }

@@ -114,6 +114,14 @@ class HighScores {
     let rank = document.createElement('h4');
     rank.classList.add('table-cell');
     rank.append(`${newRank}`);
+    if (newRank == 1) {
+      rank.append(' 🥇')
+    } else if (newRank == 2) {
+      rank.append(' 🥈')
+    } else if (newRank == 3) {
+      rank.append(' 🥉')
+    }
+
 
     let name = document.createElement('span');
     name.classList.add('table-cell')
