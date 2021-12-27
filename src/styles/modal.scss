@@ -1,0 +1,54 @@
+@use 'variables' as v;
+
+.outer-modal {
+  // position: absolute;
+  // top: 0;
+  // right: 0;
+  // bottom: 0;
+  // left: 0;
+  // opacity: 0.7;
+  // background-color: white;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(255, 255, 255, 0.7);
+  z-index: 10;
+  cursor: default;
+}
+
+.inner-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  z-index: 11;
+  overflow: auto;
+
+  width: 800px;
+  max-width: 100%;
+  max-height: 80%;
+  padding: 1rem;
+
+  border: 5px solid v.$border;
+  border-radius: 8px;
+  background-color: v.$background;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .tech, .norm, .pok {
+    text-align: left;
+  }
+
+  .tech {
+    margin-top: 1rem;
+  }
+
+  h3 {
+    font-weight: bold;
+  }
+}

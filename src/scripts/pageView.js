@@ -1,4 +1,5 @@
 import HighScores from "./highScores";
+import Modal from "./modal";
 import Music from "./music";
 import Start from "./start";
 import TextView from "./textView";
@@ -13,11 +14,13 @@ class PageView {
     this.canvasView = canvasView;
     this.canvasInterval;
     this.music;
+    this.modal = new Modal
 
     this.boundStartHandler = this.startButtonHandler.bind(this);
     this.boundStatsHandler = this.statsButtonHandler.bind(this);
     this.boundRestartHandler = this.restartButtonHandler.bind(this);
     this.boundPokeButtonHandler = this.pokeButtonHandler.bind(this);
+    this.boundQHandler = this.questionHandler.bind(this);
 
     this.init();
   }
@@ -29,6 +32,17 @@ class PageView {
     this.addPokeButtonListener();
     this.addMuteListeners();
     this._renderHighScores();
+    this.addQuestionListener();
+  }
+
+  addQuestionListener() {
+    const questionButton = Util.q('.fa-question-circle');
+    console.log(questionButton)
+    questionButton.addEventListener('click', this.boundQHandler);
+  }
+
+  questionHandler() {
+    this.modal.open();
   }
 
   addStartButtonListener() {
