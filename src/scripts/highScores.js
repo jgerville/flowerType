@@ -48,7 +48,6 @@ class HighScores {
     this.mode = 'pokemon';
     Util.q('.table-caption').innerText = 'High Scores (Pokemon Mode)';
     await this.getPokeScores();
-    console.log(this.scoreData);
     this._clearTable();
     this._render();
   }

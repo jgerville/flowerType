@@ -37,7 +37,6 @@ class PageView {
 
   addQuestionListener() {
     const questionButton = Util.q('.fa-question-circle');
-    console.log(questionButton)
     questionButton.addEventListener('click', this.boundQHandler);
   }
 

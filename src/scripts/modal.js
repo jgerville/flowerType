@@ -57,7 +57,6 @@ class Modal {
 
   close() {
     Util.removeChildren(Util.q('.modal-holder'));
-    console.log('uhoh')
   }
 
   addCloseListener() {
