@@ -50,11 +50,11 @@ class PageView {
 
   async startButtonHandler(e) {
     e.preventDefault();
-    Util.q('#poke-button').disabled = true;
     this.start.button.removeEventListener('click', this.boundStartHandler);
+    this.start.button.disabled = true;
     Util.getEleAddHidden('#sentence-input');
     this.start.button.innerText = 'Generating, please wait...';
-    this.start.button.disabled = true;
+    Util.q('#poke-button').disabled = true;
     await this.start.generateText();
 
     Util.getEleAddHidden('.instructions');
@@ -80,10 +80,11 @@ class PageView {
   async pokeButtonHandler(e) {
     e.preventDefault();
     Util.q('#sentence-input').value = 'Pokemon!';
-    Util.q('#start-button').disabled = true;
-    Util.q('#poke-button').disabled = true;
     this.start.pokeButton.removeEventListener('click', this.boundPokeButtonHandler);
+    Util.q('#poke-button').disabled = true;
+    console.log("hig")
     await this.highScores.pokeMode();
+    Util.q('#start-button').disabled = false;
     this.start.button.click();
   }
 
