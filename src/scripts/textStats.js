@@ -96,7 +96,7 @@ class TextStats {
     const submitScoreContainer = document.createElement('div');
     submitScoreContainer.classList.add('submit-score-container');
 
-    const inputRow = document.createElement('div');
+    const inputRow = document.createElement('form');
     inputRow.classList.add('input-row');
 
     const submitScoreInput = document.createElement('input');
