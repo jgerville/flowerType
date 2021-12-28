@@ -109,6 +109,7 @@ class TextStats {
     const submitScoreButton = document.createElement('button');
     submitScoreButton.classList.add('submit-score-button');
     submitScoreButton.append('Submit');
+    submitScoreButton.disabled = true;
 
     inputRow.appendChild(submitScoreInput);
     inputRow.appendChild(submitScoreButton);
@@ -119,7 +120,17 @@ class TextStats {
 
     container.appendChild(div);
     container.appendChild(submitScoreContainer);
+    Util.q('.submit-score-input').addEventListener('input', this.handleInput);
     this.addSubmitButtonListener();
+  }
+
+  handleInput(e) {
+    const button = Util.q('.submit-score-button');
+    if (e.target.value) {
+      button.disabled = false;
+    } else {
+      button.disabled = true;
+    }
   }
 
   getWPM() {

@@ -50,10 +50,10 @@ class Start {
     this.container.appendChild(titleDiv);
     this.container.appendChild(form);
     Util.q('#sentence-input').focus();
-    Util.q('#sentence-input').addEventListener('input', this.handleChange);
+    Util.q('#sentence-input').addEventListener('input', this.handleInput);
   }
 
-  handleChange(e) {
+  handleInput(e) {
     const button = Util.q('#start-button');
     if (e.target.value) {
       button.disabled = false;
