@@ -4,6 +4,21 @@
 .start-container {
   padding: 1em;
 
+  h2 {
+    font-size: 2rem;
+    // margin-top: 0.5em;
+    font-weight: bold;
+  }
+
+  em {
+    font-style: italic;
+  }
+
+  p {
+    margin: 0;
+    font-size: 20px;
+  }
+
   form {
     width: 100%;
 

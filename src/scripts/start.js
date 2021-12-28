@@ -16,16 +16,28 @@ class Start {
 
   render() {
     const form = document.createElement('form');
+
+    const titleDiv = document.createElement('div');
+    const title = document.createElement('h2');
+    title.append('Flower Type');
+    const tagline = document.createElement('p');
+    const em = document.createElement('em');
+    em.append('An AI-Generated Typing Test');
+    tagline.appendChild(em);
+    titleDiv.appendChild(title);
+    titleDiv.appendChild(tagline);
     
     const input = document.createElement('input');
     input.id = 'sentence-input'
     input.type = 'text';
     input.placeholder = 'Type a sentence or two in here!'
-    input.autofocus = true;
+    // input.autofocus = true;
+    input.classList.add('disabled');
 
     const button = document.createElement('button');
     button.id = 'start-button';
     button.innerText = 'Start';
+    button.disabled = true;
 
     const pokeButton = document.createElement('button');
     pokeButton.id = 'poke-button';
@@ -34,8 +46,20 @@ class Start {
     form.appendChild(input);
     form.appendChild(button);
     form.appendChild(pokeButton);
+
+    this.container.appendChild(titleDiv);
     this.container.appendChild(form);
     Util.q('#sentence-input').focus();
+    Util.q('#sentence-input').addEventListener('input', this.handleChange);
+  }
+
+  handleChange(e) {
+    const button = Util.q('#start-button');
+    if (e.target.value) {
+      button.disabled = false;
+    } else {
+      button.disabled = true;
+    }
   }
 
   async generateText() {
