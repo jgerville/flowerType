@@ -62,6 +62,9 @@ class HighScores {
       let targetContainer = Util.q(targetSelector);
       Util.removeChildren(targetContainer);
     }
+
+    let yourScoreContainer = Util.q('.your-score');
+    Util.removeChildren(yourScoreContainer);
   }
 
   _render(newRank, newName, newWPM, newErrors, newKind = this.mode) {
