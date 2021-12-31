@@ -1,9 +1,5 @@
 # Live Link
 
-The standard timer is 60 seconds long.
-To get a 30 second timer, prefix the input sentence with "Test: " and don't forget the space after the colon!
-There is a secret mode that lasts 120 seconds, but I don't want to say how to access it.
-
 [Flower Type](https://flower-type.herokuapp.com)
 
 # Background
