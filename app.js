@@ -36,7 +36,7 @@ app.get('/getScores/:kind', async (req, res) => {
 })
 
 
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Now listening at localhost:${PORT}`);
 });
