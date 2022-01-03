@@ -1,21 +1,26 @@
-# Live Link
+## Live Link
 
 [Flower Type](https://flower-type.herokuapp.com)
 
-# Background
+## Background
 
-There are a lot of typing test websites out there. Although most of them offer the same functionality, many of these sites are cluttered with ads or lock features behind premium accounts. TypePrax aims to maintain a **simple and clean UI** that lets any user analyze their typing abilities without bothering them with ads or random links scattered around the page. It also aims to make it fun by displaying pleasing graphics and speeding up and slowing down music based on performance.
+Flower Type harnesses AI-generated text to create a unique typing test experience. The DeepAI API takes in a user's input sentence, and creates a block of text that it thinks is relevant. This allows users to make the typing test content about whatever subject they like.
 
+On top of that, there are two forms of feedback for users as they type. 
 
-# Functionality and MVPs
+- Users can set their own WPM goals, and during the typing test, any time they are over the goal the background music speeds up, and slows down if they are below the goal.
+- New graphics are added to the HTML canvas for each word the user types correctly. In Normal Mode, these are random, mathematically-generated flowers. In Pokemon Mode, these are random Pokemon (some rarer than others).
 
-In TypePrax, users are able to:
+## Functionality and MVPs
 
- - Click a button to generate text to be typed
+In Flower Type, users are able to:
+
+ - Leverage AI to get a block of text about whatever they want
  - Start a countdown by beginning to type
- - Feel rewarded by canvas graphics that grow with every correct word
- - Press a button to mute or unmute music while it is playing
+ - Set their own goals in terms of words per minute (WPM)
+ - Mute or unmute the background music while it is playing
  - Review data from their typing session after it ends
+ - Add their score to a leaderboard (with different leaderboards for each mode)
 
 
 In addition, this project will include:
@@ -25,32 +30,43 @@ In addition, this project will include:
 - Buttons linking to my Github and LinkedIn in the post-completion statistics panel
 
 
-# Wireframes
+## Screenshots
 
-![the root page](https://i.imgur.com/gFUS2FX.png)
-![after pressing start](https://i.imgur.com/7fyjfvU.png)
-![while typing](https://i.imgur.com/FcvxNJH.png)
-![after pressing the hide keyboard button](https://i.imgur.com/0WN0axq.png)
-![stats, including buttons to Github/LinkedIn](https://i.imgur.com/oMRAwXb.png)
+### Start Screen
+
+![start screen](https://i.imgur.com/5XIsQ4E.png)
+
+### Random Mathematically-Generated Flowers Grow For Each Word
+![mathematically-generated flowers grow for each word](https://i.imgur.com/Gohj6AK.png)
+
+### Post-Session Screen
+![post-session screen](https://i.imgur.com/T2h1tP1.png)
+
+### User Can See Where He/She Ranks
+![user sees where he/she ranks](https://i.imgur.com/xtuTGa4.png)
+
+### Pokemon Mode
+![pokemon mode](https://i.imgur.com/Erdq5Fd.png)
 
 
 The statistics panel will include:
 
 - Words per minute
 - Number of errors
-- Number of backspaces
-- User's most commonly mis-typed keys
 
 
-# Technologies, Libraries, APIs
+## Technologies, Libraries, APIs
 
 This project will be implemented with the following technologies:
 
+- **Amazon DynamoDB** for reliable and blazing fast leaderboards
+- **Express** and **Node** for the backend to protect API keys and handle requests to the database
+- **DeepAI API** to use AI to generate text given input text
 - **Webpack** and **Babel** to bundle and transpile the source Javascript code
 - **npm** to manage project dependencies
 
 
-# Implementation Timeline
+## Implementation Timeline
 
 **Friday Afternoon & Weekend:** Setup the project's file structure and setup dependencies like Webpack.  Create `TextContent` and `TextView` classes and add fundamental logic like key event listeners.
 
@@ -63,14 +79,11 @@ This project will be implemented with the following technologies:
 **Thursday Morning:** Deploy to GitHub pages. If time, rewrite this proposal as a production README. If there is still more time, add different selections of texts for users to type out.
 
 
-# Bonus features
+## Bonus features
 
 Given enough time, there are many additional features I would like to implement. Some of these include:
 
-- A button to toggle dark mode
-- Allow users to select random texts from different categories
-- Allow users to select different amounts of time to practice
-- Authentication, in order to enable:
-- Record statistics from previous sessions in the database
-- Add leaderboards
-- Add user show pages
+- Record statistics from previous sessions in the database (done)
+- Add leaderboards (done)
+- Add a third mode
+
