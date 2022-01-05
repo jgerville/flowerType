@@ -66,6 +66,25 @@ This project will be implemented with the following technologies:
 - **npm** to manage project dependencies
 
 
+## Conversion of Text Into Individual Elements
+An early challenge of the project was: how can I target individual characters in the block of text so that I can style them with CSS as the user types them? To tackle this problem, I placed each character in a span, and gave each span data attributes for its character and word indices.
+```javascript
+  _spanifyText(str) {
+    const p = document.createElement('p');
+    let wordIdx = 0;
+    for (let i = 0; i < str.length; i++) {
+      const span = document.createElement('span');
+      span.dataset.char = i;
+      span.dataset.word = wordIdx;
+      span.append(str[i]);
+      p.appendChild(span);
+      if (str[i] === " ") wordIdx++;
+    }
+    return p;
+  }
+```
+
+
 ## Implementation Timeline
 
 **Friday Afternoon & Weekend:** Setup the project's file structure and setup dependencies like Webpack.  Create `TextContent` and `TextView` classes and add fundamental logic like key event listeners.
@@ -85,5 +104,5 @@ Given enough time, there are many additional features I would like to implement.
 
 - Record statistics from previous sessions in the database (done)
 - Add leaderboards (done)
+- Refactor and clean up code
 - Add a third mode
-
