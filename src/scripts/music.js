@@ -8,6 +8,7 @@ class Music {
   start() {
     if (!this.started){
       this.song.play();
+      this.song.volume = 0.55;
       this.started = true;
       this.song.loop = true;
       this.song.playbackRate = 0.7;
