@@ -18,10 +18,12 @@ class TextContent {
       multiplied = multiplied + " " + body;
     }
     multiplied = multiplied.replace(/…/g, "...");
+    // There are other letters with accents but this is the only one I ran into
+    // in English text, for some reason.
     multiplied = multiplied.replace(/é/g, "e");
-    multiplied = multiplied.replace(/–/g, "-");
-    multiplied = multiplied.replace(/—/g, "-");
+    multiplied = multiplied.replace(/[–—]/g, "-");
     multiplied = multiplied.replace(/\n/g, "");
+    multiplied = multiplied.replace(/[‘’]/g, "'");
     return multiplied.replace(/\s{2,}/g, " ");
   }
 
