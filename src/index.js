@@ -13,5 +13,5 @@ canvasEl.height = ctxY;
 
 const ctx = canvasEl.getContext("2d");
 
-let canvasView = new CanvasView(ctx, ctxX, ctxY);
+const canvasView = new CanvasView(ctx, ctxX, ctxY);
 new PageView(canvasView);

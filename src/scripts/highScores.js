@@ -7,19 +7,12 @@ class HighScores {
   }
 
   async init() {
-    await this.getScores();
+    await this.getScores("normal");
     this._render();
   }
 
-  async getScores() {
-    const rawResponse = await fetch("/getScores/normal");
-    const data = await rawResponse.json();
-    this.scoreData = data;
-    return data;
-  }
-
-  async getPokeScores() {
-    const rawResponse = await fetch("/getScores/pokemon");
+  async getScores(scoreType) {
+    const rawResponse = await fetch(`/getScores/${scoreType}`);
     const data = await rawResponse.json();
     this.scoreData = data;
     return data;
@@ -30,7 +23,6 @@ class HighScores {
       method: "POST",
       headers: {
         Accept: "application/json",
-        // 'Content-Type': 'application/x-www-form-urlencoded'
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -50,7 +42,7 @@ class HighScores {
   async pokeMode() {
     this.mode = "pokemon";
     Util.q(".table-caption").innerText = "High Scores (Pokemon Mode)";
-    await this.getPokeScores();
+    await this.getScores("pokemon");
     this._clearTable();
     this._render();
   }
@@ -61,12 +53,12 @@ class HighScores {
 
   _clearTable() {
     for (let i = 0; i < 5; i++) {
-      let targetSelector = `.score${i + 1}`;
-      let targetContainer = Util.q(targetSelector);
+      const targetSelector = `.score${i + 1}`;
+      const targetContainer = Util.q(targetSelector);
       Util.removeChildren(targetContainer);
     }
 
-    let yourScoreContainer = Util.q(".your-score");
+    const yourScoreContainer = Util.q(".your-score");
     Util.removeChildren(yourScoreContainer);
   }
 
@@ -80,12 +72,12 @@ class HighScores {
         lowestWPMOnLeaderboard = this.scoreData[i].wpm;
       }
 
-      let wpm = this.scoreData[i].wpm;
-      let errors = this.scoreData[i].info.errors;
+      const wpm = this.scoreData[i].wpm;
+      const errors = this.scoreData[i].info.errors;
 
       if (i > 0) {
-        let prevWpm = this.scoreData[i - 1].wpm;
-        let prevErrors = this.scoreData[i - 1].info.errors;
+        const prevWpm = this.scoreData[i - 1].wpm;
+        const prevErrors = this.scoreData[i - 1].info.errors;
         if (wpm === prevWpm && errors === prevErrors) {
           ranksToAdd++;
         } else {
@@ -98,16 +90,16 @@ class HighScores {
         }
       }
 
-      let targetSelector = `.score${i + 1}`;
-      let rank = `${currentRank}`;
-      let kind = newKind;
-      let name = this.scoreData[i].username;
+      const targetSelector = `.score${i + 1}`;
+      const rank = `${currentRank}`;
+      const kind = newKind;
+      const name = this.scoreData[i].username;
 
       this._renderRow(targetSelector, rank, kind, name, wpm, errors);
     }
 
     if (newWPM < lowestWPMOnLeaderboard) {
-      let targetSelector = ".your-score";
+      const targetSelector = ".your-score";
       this._renderRow(
         targetSelector,
         `${newRank}`,
@@ -120,10 +112,10 @@ class HighScores {
   }
 
   _renderRow(containerSelector, newRank, newKind, newName, newWPM, newErrors) {
-    let targetContainer = Util.q(containerSelector);
+    const targetContainer = Util.q(containerSelector);
     Util.removeChildren(targetContainer);
 
-    let rank = document.createElement("h4");
+    const rank = document.createElement("h4");
     rank.classList.add("table-cell");
     rank.append(`${newRank}`);
     if (newRank == 1) {
@@ -134,16 +126,16 @@ class HighScores {
       rank.append(" 🥉");
     }
 
-    let name = document.createElement("span");
+    const name = document.createElement("span");
     name.classList.add("table-cell");
     name.append(newName);
 
-    let wpm = document.createElement("span");
+    const wpm = document.createElement("span");
     wpm.classList.add("table-cell");
 
     wpm.append(newWPM);
 
-    let errors = document.createElement("span");
+    const errors = document.createElement("span");
     errors.classList.add("table-cell");
     errors.append(newErrors);
 

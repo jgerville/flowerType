@@ -91,14 +91,6 @@ class TextStats {
     const p3 = document.createElement("p");
     p3.append(`Wrong keys: ${this.numWrongKeydowns}`);
 
-    // const ul = this._createRightCharWrongCharElement();
-
-    // div.appendChild(p1);
-    // div.appendChild(p2);
-    // div.appendChild(p3);
-
-    // div.appendChild(ul);
-
     const { wpmCircle, errorCircle } = this._createStatCircles(
       wpm,
       this.numWrongKeydowns
@@ -192,7 +184,7 @@ class TextStats {
       const li = document.createElement("li");
 
       const innerP = document.createElement("p");
-      let printKey = key;
+      const printKey = key;
       if (printKey === " ") {
         printKey = "Space";
       }
@@ -203,7 +195,7 @@ class TextStats {
       for (const wrongKey in this.rightCharWrongChar[key]) {
         const innerLi = document.createElement("li");
         const value = this.rightCharWrongChar[key][wrongKey];
-        let printWrongKey = wrongKey.toUpperCase();
+        const printWrongKey = wrongKey.toUpperCase();
         if (printWrongKey === " ") {
           printWrongKey = "Space";
         }

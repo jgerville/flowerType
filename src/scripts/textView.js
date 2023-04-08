@@ -91,7 +91,9 @@ class TextView {
       span.dataset.word = wordIdx;
       span.append(str[i]);
       p.appendChild(span);
-      if (str[i] === " ") wordIdx++;
+      if (str[i] === " ") {
+        wordIdx++;
+      }
     }
     return p;
   }
@@ -196,8 +198,8 @@ class TextView {
 
     if (wordIdx - this.numWordsShifted > 16) {
       const eleHoldingSpans = this.container.firstChild;
-      let idxStart = parseInt(eleHoldingSpans.firstChild.dataset.word);
-      let idxEnd = idxStart + 8;
+      const idxStart = parseInt(eleHoldingSpans.firstChild.dataset.word);
+      const idxEnd = idxStart + 8;
 
       while (eleHoldingSpans.firstChild.dataset.word < idxEnd) {
         eleHoldingSpans.removeChild(eleHoldingSpans.firstChild);

@@ -50,11 +50,9 @@ class Modal {
 
     const container = Util.q(".modal-holder");
 
-    // inner.appendChild(header);
     inner.appendChild(times);
     inner.appendChild(norm);
     inner.appendChild(tech);
-    // inner.appendChild(pok);
 
     container.appendChild(outer);
     container.appendChild(inner);
