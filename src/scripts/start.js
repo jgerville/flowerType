@@ -31,7 +31,6 @@ class Start {
     input.id = 'sentence-input'
     input.type = 'text';
     input.placeholder = 'Type a sentence or two in here!'
-    // input.autofocus = true;
     input.classList.add('disabled');
 
     const button = document.createElement('button');
@@ -69,30 +68,27 @@ class Start {
 
     if (value === 'Pokemon!') {
       this.special = true;
-      let response = await fetch('/special')
-      let response2 = await response.json();
-      let text = response2.text;
-      this.textGenerated = text;
-    } else if (value.slice(0, 6) === 'Test: ') {
-      // the goal here is to lower timer to 30s if input begins with 'Test: '
-      let response = await fetch('/api')
-      let response2 = await response.json();
-      let key = response2.deepaiKEY;
-      deepai.setApiKey(key);
-      const resp = await deepai.callStandardApi("text-generator", {
-        text: value.slice(6),
+      // The text we generate in this case is hardcoded, but it's intentionally
+      // obscured here to make the surprise better.
+      const specialTextResponse = await fetch('/special');
+      const specialTextData = await specialTextResponse.json();
+      this.textGenerated = specialTextData.text;
+    } else {
+      let inputText;
+      if (value.slice(0, 6) === 'Test: ') {
+        this.test = true;
+        inputText = value.slice(6);
+      } else {
+        inputText = value;
+      }
+
+      const apiKeyResponse = await fetch('/api');
+      const apiKeyData = await apiKeyResponse.json();
+      deepai.setApiKey(apiKeyData.deepaiKEY);
+      const generatedResponse = await deepai.callStandardApi("text-generator", {
+        text: inputText,
       });
-      this.textGenerated = resp.output;
-      this.test = true;
-    } else {      
-      let response = await fetch('/api')
-      let response2 = await response.json();
-      let key = response2.deepaiKEY;
-      deepai.setApiKey(key);
-      const resp = await deepai.callStandardApi("text-generator", {
-        text: value,
-      });
-      this.textGenerated = resp.output
+      this.textGenerated = generatedResponse.output;
     }
   }
 
