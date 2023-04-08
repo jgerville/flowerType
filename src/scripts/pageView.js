@@ -88,7 +88,6 @@ class PageView {
       this.boundPokeButtonHandler
     );
     Util.q("#poke-button").disabled = true;
-    console.log("hig");
     await this.highScores.pokeMode();
     Util.q("#start-button").disabled = false;
     this.start.button.click();
