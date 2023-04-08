@@ -1,12 +1,12 @@
 class Music {
   constructor(songFile, egg) {
-    this.song = new Audio(songFile)
+    this.song = new Audio(songFile);
     this.started = false;
-    this.easter = egg
+    this.easter = egg;
   }
 
   start() {
-    if (!this.started){
+    if (!this.started) {
       this.song.play();
       this.song.volume = 0.55;
       this.started = true;

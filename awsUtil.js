@@ -2,11 +2,10 @@ var AWS = require("aws-sdk");
 
 AWS.config.update({
   region: "us-east-2",
-  endpoint: "https://dynamodb.us-east-2.amazonaws.com"
+  endpoint: "https://dynamodb.us-east-2.amazonaws.com",
   // endpoint: "http://localhost:8000"
 });
 const docClient = new AWS.DynamoDB.DocumentClient();
-
 
 // example input: postScore("normal", "John", 81, 0);
 async function postScore(kind, name, wpm, errors) {
@@ -19,11 +18,11 @@ async function postScore(kind, name, wpm, errors) {
         info: {
           kind,
           errors: Number(errors),
-        }
-      }
-    }
+        },
+      },
+    };
     const result = await docClient.put(params).promise();
-    console.log("Added item:", result)
+    console.log("Added item:", result);
   } catch (err) {
     console.log(err);
   }
@@ -42,11 +41,11 @@ async function fetchScores(kind) {
       items = await docClient.scan(params).promise();
       items.Items.forEach((item) => {
         if (item.info.kind === kind) {
-          scores.push(item)
+          scores.push(item);
         }
       });
       params.ExclusiveStartKey = items.LastEvaluatedKey;
-    } while (typeof items.LastEvaluatedKey !== 'undefined');
+    } while (typeof items.LastEvaluatedKey !== "undefined");
   } catch (err) {
     console.log(err);
   }
@@ -72,4 +71,4 @@ async function fetchScores(kind) {
 module.exports = {
   postScore,
   fetchScores,
-}
+};

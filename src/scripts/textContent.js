@@ -6,9 +6,9 @@ class TextContent {
     this.currentChar = this.body[this.idx];
   }
 
-  // invoke if user correctly types currentChar, unless 
+  // invoke if user correctly types currentChar, unless
   nextChar() {
-    this.idx ++;
+    this.idx++;
     this.updateCurrentChar();
   }
 
@@ -36,7 +36,7 @@ class TextContent {
 
   // if the idx reaches the length, the user has gotten to the end of the text
   isFinished() {
-    return this.idx === this.length
+    return this.idx === this.length;
   }
 }
 

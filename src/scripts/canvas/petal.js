@@ -34,15 +34,19 @@ class Petal {
       this.ctx.lineWidth = 1;
       this.ctx.fill();
       this.ctx.stroke();
-      this.petalStepsLeft --;
+      this.petalStepsLeft--;
     } else {
       this.petalNotComplete = false;
     }
   }
 
   move() {
-    this.pos[0] = this.startPos[0] + 5 * Math.cbrt(this.degree) * Math.sin(this.degree * this.degreeChange);
-    this.pos[1] = this.startPos[1] + 5 * Math.cbrt(this.degree) * Math.cos(this.degree * this.degreeChange);
+    this.pos[0] =
+      this.startPos[0] +
+      5 * Math.cbrt(this.degree) * Math.sin(this.degree * this.degreeChange);
+    this.pos[1] =
+      this.startPos[1] +
+      5 * Math.cbrt(this.degree) * Math.cos(this.degree * this.degreeChange);
 
     if (this.clockwise) {
       this.degree += 1;
@@ -52,20 +56,20 @@ class Petal {
   }
 
   getRandomDegreeChange() {
-    const nicePatterns = [1,2,3,4,5,7,8,9,10,14,15,16]
-    return nicePatterns[Math.floor(Math.random() * nicePatterns.length)]
+    const nicePatterns = [1, 2, 3, 4, 5, 7, 8, 9, 10, 14, 15, 16];
+    return nicePatterns[Math.floor(Math.random() * nicePatterns.length)];
   }
 
   getRandomRadius() {
-    return (Math.random() * 0.5) + 1.1
+    return Math.random() * 0.5 + 1.1;
   }
 
   getRandomPetalSize() {
-    return (Math.random() * 50) + 150
+    return Math.random() * 50 + 150;
   }
 
   getRandomBoolean() {
-    return Math.random() >= 0.5
+    return Math.random() >= 0.5;
   }
 }
 

@@ -31,9 +31,9 @@ class Timer {
   }
 
   renderInstructions() {
-    const p = document.createElement('p')
-    p.append('Start Typing When Ready!');
-    this.container.appendChild(p)
+    const p = document.createElement("p");
+    p.append("Start Typing When Ready!");
+    this.container.appendChild(p);
   }
 
   render() {
@@ -44,30 +44,30 @@ class Timer {
     const secs = this._addZeroToSecs(timeArray[1]);
 
     const formattedTime = `${mins}:${secs}`;
-    
+
     // makes sure the old times get deleted
     if (this.container.children.length > 0) {
       for (const child of this.container.children) {
-        this.container.removeChild(child)
+        this.container.removeChild(child);
       }
     }
 
     // create a p element, add it to the timer container
-    const p = document.createElement('p')
+    const p = document.createElement("p");
     p.append(formattedTime);
-    this.container.appendChild(p)
+    this.container.appendChild(p);
     this._addTimerColor(this.secondsLeft);
   }
 
   renderStatsButton() {
-    const button = document.createElement('button');
-    button.append('View Stats');
-    button.classList.add('stats-button')
+    const button = document.createElement("button");
+    button.append("View Stats");
+    button.classList.add("stats-button");
 
     // clear the container first
     if (this.container.children.length > 0) {
       for (const child of this.container.children) {
-        this.container.removeChild(child)
+        this.container.removeChild(child);
       }
     }
 
@@ -75,26 +75,26 @@ class Timer {
   }
 
   renderPostGame() {
-    const restartButton = document.createElement('button');
-    restartButton.append('Restart');
-    restartButton.classList.add('restart-button');
+    const restartButton = document.createElement("button");
+    restartButton.append("Restart");
+    restartButton.classList.add("restart-button");
 
-    const githubLink = document.createElement('a');
-    githubLink.append('Github');
-    githubLink.title = 'Check out my Github!';
-    githubLink.href = 'https://github.com/jgerville';
-    githubLink.target= "_blank"
+    const githubLink = document.createElement("a");
+    githubLink.append("Github");
+    githubLink.title = "Check out my Github!";
+    githubLink.href = "https://github.com/jgerville";
+    githubLink.target = "_blank";
 
-    const linkedInLink = document.createElement('a');
-    linkedInLink.append('LinkedIn');
-    linkedInLink.title = 'Connect with me!';
-    linkedInLink.href = 'https://www.linkedin.com/in/julian-erville/';
-    linkedInLink.target= "_blank"
+    const linkedInLink = document.createElement("a");
+    linkedInLink.append("LinkedIn");
+    linkedInLink.title = "Connect with me!";
+    linkedInLink.href = "https://www.linkedin.com/in/julian-erville/";
+    linkedInLink.target = "_blank";
 
     // clear the container
     if (this.container.children.length > 0) {
       for (const child of this.container.children) {
-        this.container.removeChild(child)
+        this.container.removeChild(child);
       }
     }
 
@@ -105,11 +105,11 @@ class Timer {
 
   _addTimerColor(secondsLeft) {
     if (secondsLeft === 20) {
-      this.container.classList.add('last-twenty-seconds')
+      this.container.classList.add("last-twenty-seconds");
     } else if (secondsLeft === 10) {
-      this.container.classList.add('last-ten-seconds')
+      this.container.classList.add("last-ten-seconds");
     } else if (secondsLeft === 3) {
-      this.container.classList.add('last-three-seconds')
+      this.container.classList.add("last-three-seconds");
     }
   }
 
@@ -117,7 +117,7 @@ class Timer {
     if (timeArray[1] >= 60) {
       while (timeArray[1] >= 60) {
         timeArray[1] -= 60;
-        timeArray[0] ++;
+        timeArray[0]++;
       }
     }
     return timeArray;
@@ -132,7 +132,7 @@ class Timer {
 
   _addZeroToSecs(secs) {
     if (secs < 10) {
-      secs = `0${secs}`
+      secs = `0${secs}`;
     }
     return secs;
   }

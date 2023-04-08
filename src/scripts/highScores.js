@@ -3,7 +3,7 @@ import Util from "./utilities";
 class HighScores {
   constructor() {
     this.scoreData = [];
-    this.mode = 'normal';
+    this.mode = "normal";
   }
 
   async init() {
@@ -12,48 +12,51 @@ class HighScores {
   }
 
   async getScores() {
-    const rawResponse = await fetch('/getScores/normal')
+    const rawResponse = await fetch("/getScores/normal");
     const data = await rawResponse.json();
     this.scoreData = data;
     return data;
   }
 
   async getPokeScores() {
-    const rawResponse = await fetch('/getScores/pokemon')
+    const rawResponse = await fetch("/getScores/pokemon");
     const data = await rawResponse.json();
     this.scoreData = data;
     return data;
   }
 
   async postScore(name, wpm, errors, kind = this.mode) {
-    const rawResponse = await fetch('/postScore', {
-      method: 'POST',
+    const rawResponse = await fetch("/postScore", {
+      method: "POST",
       headers: {
-        'Accept': 'application/json',
+        Accept: "application/json",
         // 'Content-Type': 'application/x-www-form-urlencoded'
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        kind, name, wpm, errors
-      })
+        kind,
+        name,
+        wpm,
+        errors,
+      }),
     });
     const data = await rawResponse.json();
     this.scoreData = data;
-    const rank = data.findIndex((score) => score.wpm == wpm); 
+    const rank = data.findIndex((score) => score.wpm == wpm);
     this._render(rank, name, wpm, errors, kind);
     return rank;
   }
 
   async pokeMode() {
-    this.mode = 'pokemon';
-    Util.q('.table-caption').innerText = 'High Scores (Pokemon Mode)';
+    this.mode = "pokemon";
+    Util.q(".table-caption").innerText = "High Scores (Pokemon Mode)";
     await this.getPokeScores();
     this._clearTable();
     this._render();
   }
 
   normalMode() {
-    this.mode = 'normal';
+    this.mode = "normal";
   }
 
   _clearTable() {
@@ -63,7 +66,7 @@ class HighScores {
       Util.removeChildren(targetContainer);
     }
 
-    let yourScoreContainer = Util.q('.your-score');
+    let yourScoreContainer = Util.q(".your-score");
     Util.removeChildren(yourScoreContainer);
   }
 
@@ -79,17 +82,17 @@ class HighScores {
 
       let wpm = this.scoreData[i].wpm;
       let errors = this.scoreData[i].info.errors;
-      
+
       if (i > 0) {
-        let prevWpm = this.scoreData[i - 1].wpm
+        let prevWpm = this.scoreData[i - 1].wpm;
         let prevErrors = this.scoreData[i - 1].info.errors;
         if (wpm === prevWpm && errors === prevErrors) {
-          ranksToAdd ++;
+          ranksToAdd++;
         } else {
           // if there were ties earlier, we must increase the rank #.
           // e.g. 1, 1, 2, 3, 4: BAD
           // e.g. 1, 1, 3, 4, 5: GOOD
-          ranksToAdd ++;
+          ranksToAdd++;
           currentRank += ranksToAdd;
           ranksToAdd = 0;
         }
@@ -100,12 +103,19 @@ class HighScores {
       let kind = newKind;
       let name = this.scoreData[i].username;
 
-      this._renderRow(targetSelector, rank, kind, name, wpm, errors)
+      this._renderRow(targetSelector, rank, kind, name, wpm, errors);
     }
 
     if (newWPM < lowestWPMOnLeaderboard) {
-      let targetSelector = '.your-score';
-      this._renderRow(targetSelector, `${newRank}`, newKind, newName, newWPM, newErrors);
+      let targetSelector = ".your-score";
+      this._renderRow(
+        targetSelector,
+        `${newRank}`,
+        newKind,
+        newName,
+        newWPM,
+        newErrors
+      );
     }
   }
 
@@ -113,29 +123,28 @@ class HighScores {
     let targetContainer = Util.q(containerSelector);
     Util.removeChildren(targetContainer);
 
-    let rank = document.createElement('h4');
-    rank.classList.add('table-cell');
+    let rank = document.createElement("h4");
+    rank.classList.add("table-cell");
     rank.append(`${newRank}`);
     if (newRank == 1) {
-      rank.append(' 🥇')
+      rank.append(" 🥇");
     } else if (newRank == 2) {
-      rank.append(' 🥈')
+      rank.append(" 🥈");
     } else if (newRank == 3) {
-      rank.append(' 🥉')
+      rank.append(" 🥉");
     }
 
-
-    let name = document.createElement('span');
-    name.classList.add('table-cell')
+    let name = document.createElement("span");
+    name.classList.add("table-cell");
     name.append(newName);
 
-    let wpm = document.createElement('span');
-    wpm.classList.add('table-cell');
-    
+    let wpm = document.createElement("span");
+    wpm.classList.add("table-cell");
+
     wpm.append(newWPM);
 
-    let errors = document.createElement('span');
-    errors.classList.add('table-cell')
+    let errors = document.createElement("span");
+    errors.classList.add("table-cell");
     errors.append(newErrors);
 
     targetContainer.append(rank);

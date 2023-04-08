@@ -32,7 +32,7 @@ class Laser {
     if (this.pos[0] < 0) {
       this.vel[0] *= -1;
     }
-    if (this.pos[0] > this.WIDTH){
+    if (this.pos[0] > this.WIDTH) {
       this.vel[0] *= -1;
     }
     if (this.pos[1] < 0) {
@@ -44,11 +44,12 @@ class Laser {
   }
 
   isCollidingWith(otherLaser) {
-    let dist = Math.sqrt(Math.pow(this.pos[0] - otherObject.pos[0], 2) + Math.pow(this.pos[1] - otherObject.pos[1], 2));
-    return (this.radius + otherLaser.radius) > dist;
+    let dist = Math.sqrt(
+      Math.pow(this.pos[0] - otherObject.pos[0], 2) +
+        Math.pow(this.pos[1] - otherObject.pos[1], 2)
+    );
+    return this.radius + otherLaser.radius > dist;
   }
-
-
 
   static randomVelocity() {
     const degree = 2 * Math.PI * Math.random();
@@ -58,7 +59,7 @@ class Laser {
   static randomColor() {
     // Credit: Chris Coyier on CSS Tricks
     // https://css-tricks.com/snippets/javascript/random-hex-color/
-    return `#${Math.floor(Math.random()*16777215).toString(16)}`;
+    return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
   }
 }
 

@@ -4,8 +4,8 @@ import Thing from "./thing";
 
 class CanvasView {
   constructor(ctx, width, height) {
-  // once mode selection exists, add mode param
-    this.ctx = ctx
+    // once mode selection exists, add mode param
+    this.ctx = ctx;
     this.WIDTH = width;
     this.HEIGHT = height;
     this.mode;
@@ -25,11 +25,11 @@ class CanvasView {
   }
 
   draw() {
-    if (this.mode === 'lasers') {
+    if (this.mode === "lasers") {
       for (const laser of this.lasers) {
         laser.draw();
       }
-    } else if (this.mode === 'special') {
+    } else if (this.mode === "special") {
       this.ctx.clearRect(0, 0, this.WIDTH, this.HEIGHT);
       for (const thing of this.things) {
         thing.draw();
@@ -42,37 +42,36 @@ class CanvasView {
   }
 
   addObject() {
-    if (this.mode === 'lasers') {
+    if (this.mode === "lasers") {
       this.addLaser();
-    } else if (this.mode === 'special') {
+    } else if (this.mode === "special") {
       this.addThing();
     } else {
       this.addFlower();
     }
   }
-  
+
   addLaser() {
-    this.lasers.push(new Laser(this.ctx, this.WIDTH, this.HEIGHT))
+    this.lasers.push(new Laser(this.ctx, this.WIDTH, this.HEIGHT));
   }
 
   addFlower() {
-    this.flowers.push(new Flower(this.ctx, this.WIDTH, this.HEIGHT))
+    this.flowers.push(new Flower(this.ctx, this.WIDTH, this.HEIGHT));
   }
 
   addThing() {
-    this.things.push(new Thing(this.ctx, this.WIDTH, this.HEIGHT))
+    this.things.push(new Thing(this.ctx, this.WIDTH, this.HEIGHT));
   }
 
   moveObjects() {
-    if (this.mode === 'lasers') {
+    if (this.mode === "lasers") {
       this.moveLasers();
-    } else if (this.mode === 'special') {
+    } else if (this.mode === "special") {
       this.moveThings();
     } else {
       this.moveFlowers();
     }
   }
-
 
   moveLasers() {
     for (const laser of this.lasers) {
@@ -92,7 +91,6 @@ class CanvasView {
     }
   }
 
-
   clearInt(intervalID) {
     clearInterval(intervalID);
   }
@@ -103,8 +101,6 @@ class CanvasView {
     this.flowers = [];
     this.things = [];
   }
-
-  
 }
 
 export default CanvasView;
