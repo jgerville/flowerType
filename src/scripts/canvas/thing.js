@@ -22,11 +22,7 @@ class Thing {
   draw() {
     const image = new Image();
     image.src = this.source;
-    // this.ctx.save();
-    // this.ctx.translate(this.pos[0], this.pos[1]);
-    // this.ctx.rotate(10*Math.PI/180);
     this.ctx.drawImage(image, this.pos[0], this.pos[1]);
-    // this.ctx.restore();
   }
 
   move() {

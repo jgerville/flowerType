@@ -9,7 +9,6 @@ class Laser {
     this.pos = [x, y];
 
     this.radius = 0.5;
-    // this.pos = Laser.randomPosition();
     this.vel = Laser.randomVelocity();
     this.color = Laser.randomColor();
   }
