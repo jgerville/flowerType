@@ -21,6 +21,7 @@ class TextContent {
     multiplied = multiplied.replace(/é/g, "e");
     multiplied = multiplied.replace(/–/g, "-");
     multiplied = multiplied.replace(/—/g, "-");
+    multiplied = multiplied.replace(/\n/g, "");
     return multiplied.replace(/\s{2,}/g, " ");
   }
 
